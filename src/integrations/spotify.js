@@ -34,6 +34,7 @@ class SpotifyClient {
     const token = tokenData.access_token;
     const ttl = tokenData.expires_in * 0.95; // Just in case, lower the ttl a bit
     this.cache.set(CACHE_KEY, token, ttl);
+    return token;
   }
 
   async searchTracks(text) {
