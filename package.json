@@ -17,11 +17,9 @@
   },
   "dependencies": {
     "@slack/client": "^4.1.0",
-    "lodash": "^4.17.5",
     "node-cache": "^4.2.0",
     "request": "^2.85.0",
     "request-promise-native": "^1.0.5",
-    "sonos": "^1.1.2",
-    "spotify-web-api-node": "^3.0.0"
+    "sonos": "^1.1.2"
   }
 }

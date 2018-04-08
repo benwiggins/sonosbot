@@ -11,6 +11,7 @@ const {
   slackToken,
   sonosAddress,
   spotifyClientId,
+  spotifyRegion,
   spotifySecret,
 } = config;
 
@@ -23,8 +24,8 @@ const doStuff = async () => {
     adminChannel,
   });
   await slackClient.start();
+  const spotifyClient = new SpotifyClient({ clientId: spotifyClientId, secret: spotifySecret, region: spotifyRegion });
 
-  const spotifyClient = new SpotifyClient({ clientId: spotifyClientId, secret: spotifySecret });
   const sonosClient = new SonosClient(sonosAddress);
 
   const { commands, adminCommands } = Commands(spotifyClient, sonosClient, slackClient);

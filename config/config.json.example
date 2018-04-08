@@ -4,6 +4,7 @@
   "slackToken": "xoxb-zzzzzzzzzzzzzzzzz",
   "sonosAddress": "10.0.1.125",
   "spotifyClientId": "zzzzzzz",
-  "spotifySecret": :xxxxxxxxx",
+  "spotifyRegion": "AU",
+  "spotifySecret": "xxxxxxxxx",
   "standardChannel": "sonos"
 }
