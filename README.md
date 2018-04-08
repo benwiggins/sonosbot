@@ -1,15 +1,15 @@
 # sonosbot
-**Control Sonos/Spotify through Slack**
+## Control Sonos/Spotify through Slack
 
-** Details **
+### Details
 
 Control Sonos through Slack. Integrates with Spotify. Written from scratch but borrows _very_ liberally from the [zenmusic project](https://github.com/htilly/zenmusic).
 
-** Requirements**
+### Requirements
 
 Node 8.x or higher
 
-** Configuration **
+### Configuration
 
 You will need to create `config/config.json`. An example is provided. 
 
@@ -22,7 +22,7 @@ Once done you should invite the bot to the configured `standardChannel` and `adm
 
 To create a `spotifyClientId` and `spotifySecret` you should create an app at [developer.spotify.com](https://developer.spotify.com).
 
-** License **
+### License
 
 MIT licensed. Do what you want.
 
