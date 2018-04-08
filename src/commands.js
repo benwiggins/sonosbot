@@ -11,6 +11,7 @@ const GENERIC_ERROR = 'Something went wrong :(';
 
 let gongCount = 0;
 let gongUri;
+let gongUsers = [];
 
 const formatTrack = (track) => {
   const artists = track.artists.map(a => a.name).join(', ');
@@ -169,20 +170,25 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-  const gong = async () => {
+  const gong = async (args, user) => {
     const currentTrack = await sonosClient.currentTrack();
     if (currentTrack.uri !== gongUri) {
       gongUri = currentTrack.uri;
       gongCount = 0;
-    }
-    gongCount += 1;
-
-    if (gongCount < gongLimit) {
-      return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${currentTrack.title}*`;
+      gongUsers = [];
     }
 
-    await sonosClient.next();
-    return 'GONGED!';
+    if (!gongUsers.includes(user)) {
+      gongCount += 1;
+      gongUsers.push(user);
+        if (gongCount < gongLimit) {
+          return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${currentTrack.title}*`;
+        }
+        await sonosClient.next();
+        return 'GONGED!';
+      } else {
+        return(`Nice try, <@${event.user}>, you've already gonged this!`, event.channel);
+      }
   };
 
   const play = async () => {

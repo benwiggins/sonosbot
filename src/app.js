@@ -30,7 +30,7 @@ const doStuff = async () => {
 
   const { commands, adminCommands } = Commands(spotifyClient, sonosClient, slackClient);
 
-  const messageHandler = async (event, isAdmin) => {
+  const messageHandler = async (event, user, isAdmin) => {
     if (!event.text) {
       return;
     }
@@ -41,7 +41,7 @@ const doStuff = async () => {
     const responseFunction = (isAdmin && adminCommands[keyword]) || commands[keyword];
 
     if (responseFunction) {
-      const response = await responseFunction(args);
+      const response = await responseFunction(args, user);
       slackClient.sendMessage(response, event.channel);
     }
   };
