@@ -1,6 +1,6 @@
-const log = require('./log');
+const log = require('../log');
 const { RTMClient, WebClient } = require('@slack/client');
-const { sanitiseChannel } = require('./utils');
+const { sanitiseChannel } = require('../utils');
 
 class SlackClient {
   constructor({ token, standardChannel, adminChannel }) {
@@ -15,13 +15,11 @@ class SlackClient {
   }
 
   handleMessage(event) {
-    log(event);
-
     // Don't listen to bots, or ourselves.
     if ((event.subtype && event.subtype === 'bot_message') || event.user === this.client.activeUserId) {
       return;
     }
-
+    log(event);
     if (this.messageHandler) {
       const isAdmin = event.channel === this.adminChannelId;
       this.messageHandler(event, isAdmin);

@@ -916,6 +916,10 @@ into-stream@^3.1.0:
     from2 "^2.1.1"
     p-is-promise "^1.1.0"
 
+ip@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
+
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
@@ -1539,6 +1543,10 @@ safer-buffer@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.0.tgz#d9f653a55538c8d7829cb1a92e90bbcbc5ff5d3b"
 
+sax@>=0.6.0:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+
 "semver@2 || 3 || 4 || 5", semver@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
@@ -1568,6 +1576,16 @@ sntp@2.x.x:
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-2.1.0.tgz#2c6cec14fedc2222739caf9b5c3d85d1cc5a2cc8"
   dependencies:
     hoek "4.x.x"
+
+sonos@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/sonos/-/sonos-1.1.2.tgz#197bd0f96e5a943e982e9f2637072549fa79f9dc"
+  dependencies:
+    debug "^3.1.0"
+    ip "^1.1.5"
+    request "^2.85.0"
+    request-promise-native "^1.0.5"
+    xml2js "^0.4.19"
 
 sort-keys@^2.0.0:
   version "2.0.0"
@@ -1809,6 +1827,17 @@ ws@^4.1.0:
   dependencies:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
+
+xml2js@^0.4.19:
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "~9.0.1"
+
+xmlbuilder@~9.0.1:
+  version "9.0.7"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
 
 yallist@^2.1.2:
   version "2.1.2"

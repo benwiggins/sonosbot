@@ -2,7 +2,7 @@ const _ = require('lodash');
 const NodeCache = require('node-cache');
 const SpotifyApi = require('spotify-web-api-node');
 const rp = require('request-promise-native');
-const log = require('./log');
+const log = require('../log');
 
 const CACHE_KEY = 'spotifyToken';
 
@@ -32,7 +32,7 @@ class SpotifyClient {
     });
 
     const token = tokenData.access_token;
-    const ttl = tokenData.expires_in * 0.95;
+    const ttl = tokenData.expires_in * 0.95; // Just in case, lower the ttl a bit
     this.cache.set(CACHE_KEY, token, ttl);
     this.spotifyApi.setAccessToken(token);
   }
