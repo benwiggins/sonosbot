@@ -187,7 +187,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
         await sonosClient.next();
         return 'GONGED!';
       } else {
-        return(`Nice try, <@${user}>, you've already gonged this!`, event.channel);
+        return `Nice try, <@${user}>, you've already gonged this!`;
       }
   };
 
