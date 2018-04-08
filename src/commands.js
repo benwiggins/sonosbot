@@ -73,7 +73,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
 
   const blacklist = async (args) => {
     if (args) {
-      const words = args.split(' ').map(a => a.toLowerCase());
+      const words = args.split(' ');
 
       switch (words[0]) {
         case 'add':
@@ -87,11 +87,11 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       }
     }
 
-    const users = slackClient.blacklistedUsers;
+    const users = await slackClient.getBlacklistedUsers();
     if (!(users && users.length)) {
       return 'There are no users on the blacklist';
     }
-    return `The following users are on the blacklist: ${users.map(u => `@${u}`).join(', ')}`;
+    return `The following users are on the blacklist: ${users.map(u => `<@${u.id}>`).join(', ')}`;
   };
 
   const search = async (text) => {

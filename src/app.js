@@ -12,7 +12,6 @@ const {
   slackToken,
   sonosAddress,
   spotifyApiKey,
-  blacklist,
 } = config;
 
 const doStuff = async () => {
@@ -24,8 +23,6 @@ const doStuff = async () => {
     adminChannel,
   });
   await slackClient.start();
-
-  blacklist.forEach(u => slackClient.addToBlacklist(u));
 
   const spotifyClient = new SpotifyClient(spotifyApiKey);
   const sonosClient = new SonosClient(sonosAddress);

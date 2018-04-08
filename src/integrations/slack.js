@@ -19,34 +19,44 @@ class SlackClient {
     this.messageHandler = messageHandler;
   }
 
-  get blacklistedUsers() {
-    return this.blacklist;
-  }
-  addToBlacklist(user) {
-    const sanitisedUser = sanitiseUser(user);
+  async getBlacklistedUsers() {
+    const webClient = new WebClient(this.token);
+    const users = await webClient.users.list();
 
-    if (!this.blacklist.includes(sanitisedUser)) {
-      this.blacklist.push(sanitisedUser);
-      return true;
+    if (users && users.members) {
+      return users.members.filter(u => this.blacklist.includes(u.id));
     }
-    return false;
+    return [];
+  }
+
+  addToBlacklist(user) {
+    if (user.match(/^<@.*>$/)) {
+      const id = user.substr(2, user.length - 3);
+      if (!this.blacklist.includes(id)) {
+        this.blacklist.push(id);
+      }
+    }
   }
 
   removeFromBlacklist(user) {
-    const sanitisedUser = sanitiseUser(user);
-    if (!this.blacklist.includes(sanitisedUser)) {
-      return false;
+    if (user.match(/^<@.*>$/)) {
+      const id = user.substr(2, user.length - 3);
+      this.blacklist = this.blacklist.filter(b => b !== id);
     }
-    this.blacklist = this.blacklist.filter(u => u !== sanitisedUser);
-    return true;
   }
 
-  handleMessage(event) {
+  async handleMessage(event) {
     // Don't listen to bots, or ourselves.
     if ((event.subtype && event.subtype === 'bot_message') || event.user === this.client.activeUserId) {
       return;
     }
     log(event);
+
+    if (this.blacklist.includes(event.user)) {
+      await this.sendMessage(`Nice try, <@${event.user}>, you're banned!`, event.channel);
+      return;
+    }
+
     if (this.messageHandler) {
       const isAdmin = event.channel === this.adminChannelId;
       this.messageHandler(event, isAdmin);
@@ -77,7 +87,11 @@ class SlackClient {
   }
 
   sendMessage(message, channel) {
-    this.client.sendMessage(message, channel);
+    return this.client.sendMessage(message, channel);
+  }
+
+  listUsers() {
+    return this.client.listUsers();
   }
 }
 
