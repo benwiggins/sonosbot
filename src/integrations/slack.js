@@ -59,7 +59,7 @@ class SlackClient {
 
     if (this.messageHandler) {
       const isAdmin = event.channel === this.adminChannelId;
-      this.messageHandler(event, user, isAdmin);
+      this.messageHandler(event, isAdmin);
     }
   }
 
