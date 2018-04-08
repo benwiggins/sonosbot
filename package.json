@@ -1,0 +1,26 @@
+{
+  "name": "sonosbot",
+  "version": "0.1.0",
+  "description": "Control Sonos/Spotify through Slack.",
+  "main": "index.js",
+  "repository": "https://github.com/benwiggins/sonosbot.git",
+  "author": "Ben Wiggins",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "./node_modules/.bin/eslint 'src/**/*.js'"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0"
+  },
+  "dependencies": {
+    "@slack/client": "^4.1.0",
+    "lodash": "^4.17.5",
+    "node-cache": "^4.2.0",
+    "request": "^2.85.0",
+    "request-promise-native": "^1.0.5",
+    "spotify-web-api-node": "^3.0.0"
+  }
+}
