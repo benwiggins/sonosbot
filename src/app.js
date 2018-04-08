@@ -4,14 +4,14 @@ const SlackClient = require('./integrations/slack');
 const SpotifyClient = require('./integrations/spotify');
 const SonosClient = require('./integrations/sonos');
 const Commands = require('./commands');
-const { sanitiseUser } = require('./utils');
 
 const {
   standardChannel,
   adminChannel,
   slackToken,
   sonosAddress,
-  spotifyApiKey,
+  spotifyClientId,
+  spotifySecret,
 } = config;
 
 const doStuff = async () => {
@@ -24,7 +24,7 @@ const doStuff = async () => {
   });
   await slackClient.start();
 
-  const spotifyClient = new SpotifyClient(spotifyApiKey);
+  const spotifyClient = new SpotifyClient({ clientId: spotifyClientId, secret: spotifySecret });
   const sonosClient = new SonosClient(sonosAddress);
 
   const { commands, adminCommands } = Commands(spotifyClient, sonosClient, slackClient);

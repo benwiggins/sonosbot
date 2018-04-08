@@ -3,6 +3,7 @@
   "gongLimit": 3,
   "slackToken": "xoxb-zzzzzzzzzzzzzzzzz",
   "sonosAddress": "10.0.1.125",
-  "spotifyApiKey": "c3BvdGlmeUFwaUtleUdvZXNIZXJl",
+  "spotifyClientId": "zzzzzzz",
+  "spotifySecret": :xxxxxxxxx",
   "standardChannel": "sonos"
 }

@@ -7,8 +7,8 @@ const log = require('../log');
 const CACHE_KEY = 'spotifyToken';
 
 class SpotifyClient {
-  constructor(token) {
-    this.token = token;
+  constructor({ clientId, secret }) {
+    this.token = Buffer.from(`${clientId}:${secret}`).toString('base64');
     this.spotifyApi = new SpotifyApi();
     this.cache = new NodeCache();
   }
