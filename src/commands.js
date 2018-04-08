@@ -17,7 +17,7 @@ const formatTrack = (track) => {
   return `${artists} - ${track.name}`;
 };
 
-module.exports = (spotifyClient, sonosClient) => {
+module.exports = (spotifyClient, sonosClient, slackClient) => {
   let lastResult = [];
 
   const add = async (text) => {
@@ -52,13 +52,13 @@ module.exports = (spotifyClient, sonosClient) => {
 
   const help = () => `*I understand the following commands:*\n
   *\`search\`* _text_: Search for a track
-  *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code.
+  *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code returned from a \`search\`.
   *\`current\`*: Display the currently playing track.
-*\`gong\`*: Express your dislike for the current track. ${gongLimit} gongs and it will be skipped.
-*\`help\`*: Display this message.
-*\`list\`*: Display the current Sonos queue.
-*\`status\`*: Get the current Sonos status.
-\`volume\`: List current volume.`;
+  *\`gong\`*: Express your dislike for the current track. ${gongLimit} gongs and it will be skipped.
+  *\`help\`*: Display this message.
+  *\`list\`*: Display the current Sonos queue.
+  *\`status\`*: Get the current Sonos status.
+  *\`volume\`*: List current volume.`;
 
   const adminHelp = () => `${help()}\n\n*Admin functions:*\n
   *\`blacklist\`*: List users currently blacklisted
@@ -70,6 +70,29 @@ module.exports = (spotifyClient, sonosClient) => {
   *\`pause\`*: Pause Sonos
   *\`previous\`*: Go to the previous track
   *\`play\`*: Play or unpause Sonos`;
+
+  const blacklist = async (args) => {
+    if (args) {
+      const words = args.split(' ').map(a => a.toLowerCase());
+
+      switch (words[0]) {
+        case 'add':
+          await slackClient.addToBlacklist(words[1]);
+          break;
+        case 'del':
+          await slackClient.removeFromBlacklist(words[1]);
+          break;
+        default:
+          return 'Invalid command';
+      }
+    }
+
+    const users = slackClient.blacklistedUsers;
+    if (!(users && users.length)) {
+      return 'There are no users on the blacklist';
+    }
+    return `The following users are on the blacklist: ${users.map(u => `@${u}`).join(', ')}`;
+  };
 
   const search = async (text) => {
     const tracks = await spotifyClient.searchTracks(text);
@@ -204,11 +227,12 @@ module.exports = (spotifyClient, sonosClient) => {
 
   return {
     adminCommands: {
+      blacklist,
       help: adminHelp,
-      pause,
       next,
-      previous,
+      pause,
       play,
+      previous,
       setvolume: setVolume,
       shuffle,
       stop,

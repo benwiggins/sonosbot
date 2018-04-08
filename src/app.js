@@ -4,6 +4,7 @@ const SlackClient = require('./integrations/slack');
 const SpotifyClient = require('./integrations/spotify');
 const SonosClient = require('./integrations/sonos');
 const Commands = require('./commands');
+const { sanitiseUser } = require('./utils');
 
 const {
   standardChannel,
@@ -11,6 +12,7 @@ const {
   slackToken,
   sonosAddress,
   spotifyApiKey,
+  blacklist,
 } = config;
 
 const doStuff = async () => {
@@ -23,10 +25,12 @@ const doStuff = async () => {
   });
   await slackClient.start();
 
+  blacklist.forEach(u => slackClient.addToBlacklist(u));
+
   const spotifyClient = new SpotifyClient(spotifyApiKey);
   const sonosClient = new SonosClient(sonosAddress);
 
-  const { commands, adminCommands } = Commands(spotifyClient, sonosClient);
+  const { commands, adminCommands } = Commands(spotifyClient, sonosClient, slackClient);
 
   const messageHandler = async (event, isAdmin) => {
     if (!event.text) {
