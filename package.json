@@ -11,11 +11,17 @@
     "lint": "./node_modules/.bin/eslint 'src/**/*.js'",
     "mocha": "NODE_ENV=${NODE_ENV:=test} ./node_modules/.bin/mocha --recursive --exit"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.7.0",
+    "husky": "^0.15.0-rc.13",
     "mocha": "^5.0.5",
     "nock": "^9.2.3"
   },
