@@ -53,7 +53,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
 
   const help = () => `*I understand the following commands:*\n
   *\`search\`* _text_: Search for a track
-  *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code returned from a \`search\`.
+  *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code ` +
+  `returned from a \`search\`.
   *\`current\`*: Display the currently playing track.
   *\`gong\`*: Express your dislike for the current track. ${gongLimit} gongs and it will be skipped.
   *\`help\`*: Display this message.
@@ -103,7 +104,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       return 'I could not find anything :(';
     }
 
-    const trackNames = tracks.map((t, idx) => `*${indexToChar(idx)}.* ${formatTrack(t)} ${t.explicit ? '*`E`*' : ''}`);
+    const trackNames = tracks.map((t, idx) => `*${indexToChar(idx)}.* ${formatTrack(t)}${t.explicit ? ' *`E`*' : ''}`);
 
     return `*I found the following tracks:*\n\n${trackNames.join('\n')}\n\n*To play, use the \`add\` command.*`;
   };
@@ -181,14 +182,13 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     if (!gongUsers.includes(user)) {
       gongCount += 1;
       gongUsers.push(user);
-        if (gongCount < gongLimit) {
-          return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${currentTrack.title}*`;
-        }
-        await sonosClient.next();
-        return 'GONGED!';
-      } else {
-        return `Nice try, <@${user}>, you've already gonged this!`;
+      if (gongCount < gongLimit) {
+        return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${currentTrack.title}*`;
       }
+      await sonosClient.next();
+      return 'GONGED!';
+    }
+    return `Nice try, <@${user}>, you've already gonged this!`;
   };
 
   const play = async () => {

@@ -5,6 +5,7 @@ const log = require('../log');
 const CACHE_KEY = 'spotifyToken';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 
+const gzip = process.env.NODE_ENV !== 'test';
 class SpotifyClient {
   constructor({ clientId, secret, region }) {
     this.credentials = Buffer.from(`${clientId}:${secret}`).toString('base64');
@@ -28,9 +29,8 @@ class SpotifyClient {
       headers: { Authorization: `Basic ${this.credentials}` },
       form: { grant_type: 'client_credentials' },
       json: true,
-      gzip: true,
+      gzip,
     });
-
     const token = tokenData.access_token;
     const ttl = tokenData.expires_in * 0.95; // Just in case, lower the ttl a bit
     this.cache.set(CACHE_KEY, token, ttl);
@@ -43,7 +43,7 @@ class SpotifyClient {
       method: 'GET',
       uri: `${SPOTIFY_API}/search`,
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       qs: {
         q: text,
@@ -51,10 +51,10 @@ class SpotifyClient {
         market: this.region,
       },
       json: true,
-      gzip: true
+      gzip,
     };
     const response = await rp(request);
-    return (response && response.tracks && response.tracks.items || []);
+    return (response && response.tracks && response.tracks.items) || [];
   }
 }
 

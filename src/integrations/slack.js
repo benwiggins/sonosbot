@@ -1,6 +1,6 @@
 const log = require('../log');
 const { RTMClient, WebClient } = require('@slack/client');
-const { sanitiseChannel, sanitiseUser } = require('../utils');
+const { sanitiseChannel } = require('../utils');
 
 class SlackClient {
   constructor({
