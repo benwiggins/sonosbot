@@ -1,4 +1,4 @@
-const log = require('../log');
+const log = require('../log')('slack');
 const { RTMClient, WebClient } = require('@slack/client');
 const { sanitiseChannel } = require('../utils');
 

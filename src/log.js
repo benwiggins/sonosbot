@@ -1,1 +1,3 @@
-module.exports = message => console.log(message);
+const debug = require('debug');
+
+module.exports = (namespace = 'app') => debug(`sonosbot:${namespace}`);

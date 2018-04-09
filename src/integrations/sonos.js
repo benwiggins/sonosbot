@@ -1,4 +1,4 @@
-const log = require('../log');
+const log = require('../log')('sonos');
 const { Sonos } = require('sonos');
 
 class SonosClient {

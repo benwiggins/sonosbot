@@ -1,5 +1,5 @@
 const config = require('../config/config.json');
-const log = require('./log');
+const log = require('./log')();
 const SlackClient = require('./integrations/slack');
 const SpotifyClient = require('./integrations/spotify');
 const SonosClient = require('./integrations/sonos');

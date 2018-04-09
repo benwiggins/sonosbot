@@ -1,6 +1,6 @@
 const NodeCache = require('node-cache');
 const rp = require('request-promise-native');
-const log = require('../log');
+const log = require('../log')('spotify');
 
 const CACHE_KEY = 'spotifyToken';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
