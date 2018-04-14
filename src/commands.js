@@ -1,5 +1,6 @@
 const {
   charToIndex,
+  formatMilliseconds,
   formatSeconds,
   indexToChar,
   isChar,
@@ -16,6 +17,16 @@ let gongUsers = [];
 const formatTrack = (track) => {
   const artists = track.artists.map(a => a.name).join(', ');
   return `${artists} - ${track.name}`;
+};
+
+const formatTrackDetail = (track) => {
+  const artists = track.artists.map(a => a.name).join(', ');
+  const albumYear = track.album.release_date.substring(0, 4);
+  const length = formatMilliseconds(track.duration_ms);
+
+  return `*${track.name}*${track.explicit ? ' *`E`*' : ''} (${length})\n
+*Artist:* ${artists}
+*Album:* ${track.album.name} (${albumYear})`;
 };
 
 module.exports = (spotifyClient, sonosClient, slackClient) => {
@@ -45,7 +56,11 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     if (track) {
       const added = await addToQueue(track.uri);
       if (added) {
-        return `${formatTrack(track)} added to queue`;
+        return {
+          text: 'Added to queue.',
+          body: formatTrackDetail(track),
+          thumbUrl: track.album.images[Math.min(1, track.album.images.length - 1)].url,
+        };
       }
     }
     return GENERIC_ERROR;

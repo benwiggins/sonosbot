@@ -101,6 +101,22 @@ class SlackClient {
     return this.client.sendMessage(message, channel);
   }
 
+  send(messageDetails, channel) {
+    const { text, body, thumbUrl } = messageDetails;
+    const attachment = { fallback: text, text: `${body}` };
+    if (thumbUrl) {
+      attachment.thumb_url = thumbUrl;
+    }
+
+    const response = {
+      channel,
+      text,
+      attachments: [attachment],
+    };
+
+    return this.webClient.chat.postMessage(response);
+  }
+
   listUsers() {
     return this.client.listUsers();
   }
