@@ -1,3 +1,4 @@
+const log = require('./log')();
 const {
   charToIndex,
   formatMilliseconds,
@@ -8,25 +9,36 @@ const {
 
 const { gongLimit } = require('../config/config.json');
 
+const ADD_NOT_SPECFIED = 'What am I adding?';
+const NOT_FOUND = "I couldn't find anything :(";
 const GENERIC_ERROR = 'Something went wrong :(';
 
 let gongCount = 0;
 let gongUri;
 let gongUsers = [];
 
-const formatTrack = (track) => {
-  const artists = track.artists.map(a => a.name).join(', ');
-  return `${artists} - ${track.name}`;
+const formatArtists = item => item.artists.map(a => a.name).join(', ');
+const formatTrack = track => `${formatArtists(track)} - ${track.name}`;
+const formatAlbum = (album) => {
+  const year = album.release_date.substring(0, 4);
+  return `${formatArtists(album)} - ${album.name} (${year})`;
 };
 
 const formatTrackDetail = (track) => {
-  const artists = track.artists.map(a => a.name).join(', ');
   const albumYear = track.album.release_date.substring(0, 4);
   const length = formatMilliseconds(track.duration_ms);
 
   return `*${track.name}*${track.explicit ? ' *`E`*' : ''} (${length})\n
-*Artist:* ${artists}
-*Album:* ${track.album.name} (${albumYear})`;
+${formatArtists(track)}
+_${track.album.name}_
+_${albumYear}_`;
+};
+
+const formatAlbumDetail = (album) => {
+  const albumYear = album.release_date.substring(0, 4);
+  return `*${album.name}*
+${formatArtists(album)}
+_${albumYear}_`;
 };
 
 module.exports = (spotifyClient, sonosClient, slackClient) => {
@@ -37,7 +49,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     let track;
 
     if (!(text && text.length)) {
-      return 'What am I adding?';
+      return ADD_NOT_SPECFIED;
     }
     if (lastResult.tracks && lastResult.tracks.length) {
       if (isChar(text)) {
@@ -57,11 +69,107 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       const added = await addToQueue(track.uri);
       if (added) {
         return {
-          text: 'Added to queue.',
+          text: 'Track added to queue.',
           body: formatTrackDetail(track),
           thumbUrl: track.album.images[Math.min(1, track.album.images.length - 1)].url,
         };
       }
+    }
+    return GENERIC_ERROR;
+  };
+
+  const list = async () => {
+    const currentTrack = await sonosClient.currentTrack();
+    const limit = 10;
+    const index = currentTrack.queuePosition - 1;
+
+    const result = await sonosClient.getQueue(index, limit);
+    if (!result && result.items) {
+      return GENERIC_ERROR;
+    }
+
+    const np = idx => currentTrack.uri === result.items[idx].uri;
+
+    const items = result.items.map((i, idx) =>
+      `*${idx + index + 1}.* ${np(idx) ? '*' : ''}${i.artist} - ${i.title}${np(idx) ? '* :notes:' : ''}`);
+
+    return `*${result.total}* total tracks in queue:\n\n${items.join('\n')}`;
+  };
+
+  const addAlbum = async (text) => {
+    const addToQueue = uri => sonosClient.queueNext(uri);
+    let album;
+
+    if (!(text && text.length)) {
+      return ADD_NOT_SPECFIED;
+    }
+    if (lastResult.albums && lastResult.albums.length) {
+      if (isChar(text)) {
+        album = lastResult.albums[charToIndex(text)];
+      } else {
+        album = lastResult.albums.find(a => formatAlbum(a).toLowerCase().startsWith(text.toLowerCase()));
+      }
+    } else {
+      // Otherwise just search
+      const newSearch = await spotifyClient.searchAlbums(text);
+      if (!(newSearch && newSearch.length)) {
+        return 'I could not find that album. Have you tried `searchalbum`ing for it?';
+      }
+      album = newSearch && newSearch[0];
+    }
+    if (album) {
+      // TODO: there's _GOT_ to be a better way to do this
+      // queue(album.uri) doesn't work in shuffle and queuenext() is in the node-sonos docs but is undefined?
+
+      const response = await spotifyClient.uriRequest(album.href);
+
+      const trackUris = response.tracks.items.reverse().map(i => i.uri);
+      for (const trackUri of trackUris) { // eslint-disable-line no-restricted-syntax
+        await addToQueue(trackUri); // eslint-disable-line no-await-in-loop
+      }
+
+      return {
+        text: 'Album added to queue.',
+        body: formatAlbumDetail(album),
+        thumbUrl: album.images[Math.min(1, album.images.length - 1)].url,
+      };
+    }
+    return GENERIC_ERROR;
+  };
+
+  const addArtist = async (text) => {
+    const addToQueue = uri => sonosClient.queueNext(uri);
+    let artist;
+
+    if (!(text && text.length)) {
+      return ADD_NOT_SPECFIED;
+    }
+    if (lastResult.artists && lastResult.artists.length) {
+      if (isChar(text)) {
+        artist = lastResult.artists[charToIndex(text)];
+      } else {
+        artist = lastResult.artists.find(a => a.name.toLowerCase().startsWith(text.toLowerCase()));
+      }
+    } else {
+      // Otherwise just search
+      const newSearch = await spotifyClient.searchArtists(text);
+      if (!(newSearch && newSearch.length)) {
+        return 'I could not find that artist. Have you tried `searchartist`ing for it?';
+      }
+      artist = newSearch && newSearch[0];
+    }
+    if (artist) {
+      const { id } = artist;
+      const topTracks = await spotifyClient.getTopTracks(id);
+      log(topTracks);
+
+      const trackUris = topTracks.reverse().map(i => i.uri);
+      for (const trackUri of trackUris) { // eslint-disable-line no-restricted-syntax
+        await addToQueue(trackUri); // eslint-disable-line no-await-in-loop
+      }
+
+      const trackList = await list();
+      return `Artist added to queue.\n${trackList}`;
     }
     return GENERIC_ERROR;
   };
@@ -163,12 +271,16 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return `Nice try, <@${user}>, you've already gonged this!`;
   };
 
-  const help = () => `>>>*I understand the following commands:*\n
+  const help = () => `>>>*Standard commands:*\n
   *\`search\`* _text_: Search for a track
   *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code ` +
     `returned from a \`search\`.
   *\`current\`*: Display the currently playing track.
   *\`gong\`*: Express your dislike for the current track. ${gongLimit} gongs and it will be skipped.
+  *\`searchalbum\`* _text_: Search for an album
+  *\`searchalbum\`* _text_: Search for an artist
+  *\`addalbum\`* _text_: Add an entire album to the queue.
+  *\`addartist\`* _text_: Add an artist's top tracks to the queue.
   *\`help\`*: Display this message.
   *\`list\`*: Display the current Sonos queue.
   *\`status\`*: Get the current Sonos status.
@@ -186,24 +298,6 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     `or the character code returned from a \`searchplaylist\`
   *\`previous\`*: Go to the previous track
   *\`play\`*: Play or unpause Sonos`;
-
-  const list = async () => {
-    const currentTrack = await sonosClient.currentTrack();
-    const limit = 10;
-    const index = currentTrack.queuePosition - 1;
-
-    const result = await sonosClient.getQueue(index, limit);
-    if (!result && result.items) {
-      return GENERIC_ERROR;
-    }
-
-    const np = idx => currentTrack.uri === result.items[idx].uri;
-
-    const items = result.items.map((i, idx) =>
-      `*${idx + index + 1}.* ${np(idx) ? '*' : ''}${i.artist} - ${i.title}${np(idx) ? '* :notes:' : ''}`);
-
-    return `*${result.total}* total tracks in queue:\n\n${items.join('\n')}`;
-  };
 
   const next = async () => {
     const skip = await sonosClient.next();
@@ -243,7 +337,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     lastResult = { tracks: (tracks || []) };
 
     if (!(tracks && tracks.length)) {
-      return 'I could not find anything :(';
+      return NOT_FOUND;
     }
 
     const trackNames = tracks.map((t, idx) => `*${indexToChar(idx)}.* ${formatTrack(t)}${t.explicit ? ' *`E`*' : ''}`);
@@ -253,12 +347,39 @@ ${trackNames.join('\n')}\n
 *To add to the queue, use the \`add\` command.*`;
   };
 
+  const searchAlbums = async (text) => {
+    const albums = await spotifyClient.searchAlbums(text);
+    lastResult = { albums: (albums || []) };
+
+    if (!(albums && albums.length)) {
+      return NOT_FOUND;
+    }
+
+    const albumNames = albums.map((a, idx) => `*${indexToChar(idx)}.* ${formatAlbum(a)}`);
+    return `*I found the following albums:*\n
+${albumNames.join('\n')}\n
+*To add to the queue, use the \`addalbum\` command.*`;
+  };
+
+  const searchArtists = async (text) => {
+    const artists = await spotifyClient.searchArtists(text);
+    lastResult = { artists: (artists || []) };
+
+    if (!(artists && artists.length)) {
+      return NOT_FOUND;
+    }
+    const artistNames = artists.map((a, idx) => `*${indexToChar(idx)}.* ${a.name}`);
+    return `*I found the following artists:*\n
+${artistNames.join('\n')}\n
+*To add to the queue, use the \`addartist\` command.*`;
+  };
+
   const searchPlaylists = async (text) => {
     const playlists = await spotifyClient.searchPlaylists(text);
     lastResult = { playlists: (playlists || []) };
 
     if (!(playlists && playlists.length)) {
-      return 'I could not find anything :(';
+      return NOT_FOUND;
     }
     const playlistNames = playlists.map((p, idx) =>
       `*${indexToChar(idx)}.* ${p.name}  _(${p.tracks.total || 0} tracks)_`);
@@ -343,11 +464,15 @@ ${playlistNames.join('\n')}
     },
     commands: {
       add,
+      addalbum: addAlbum,
+      addartist: addArtist,
       current: getCurrent,
       gong,
       help,
       list,
       search,
+      searchalbum: searchAlbums,
+      searchartist: searchArtists,
       status: getStatus,
       volume: getVolume,
     },

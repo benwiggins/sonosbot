@@ -6,9 +6,9 @@ const CACHE_KEY = 'spotifyToken';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 const gzip = process.env.NODE_ENV !== 'test';
 
-const jsonRequest = (command, token, query, method = 'GET') => ({
+const request = (uri, token, query = {}, method = 'GET') => ({
   method,
-  uri: `${SPOTIFY_API}/${command}`,
+  uri,
   headers: {
     Authorization: `Bearer ${token}`,
   },
@@ -16,6 +16,9 @@ const jsonRequest = (command, token, query, method = 'GET') => ({
   json: true,
   gzip,
 });
+
+const jsonRequest = (command, token, query, method = 'GET') =>
+  request(`${SPOTIFY_API}/${command}`, token, query, method);
 
 class SpotifyClient {
   constructor({ clientId, secret, region }) {
@@ -51,11 +54,11 @@ class SpotifyClient {
 
   async searchQuery(query) {
     const token = await this.getToken();
-    const request = jsonRequest('search', token, {
+    const req = jsonRequest('search', token, {
       ...query,
       market: this.region,
     });
-    return rp(request);
+    return rp(req);
   }
 
   async searchTracks(text) {
@@ -66,6 +69,28 @@ class SpotifyClient {
   async searchPlaylists(text) {
     const response = await this.searchQuery({ type: 'playlist', q: text });
     return (response && response.playlists && response.playlists.items) || [];
+  }
+
+  async searchAlbums(text) {
+    const response = await this.searchQuery({ type: 'album', q: text });
+    return (response && response.albums && response.albums.items) || [];
+  }
+
+  async searchArtists(text) {
+    const response = await this.searchQuery({ type: 'artist', q: text });
+    return (response && response.artists && response.artists.items) || [];
+  }
+
+  async getTopTracks(artistId) {
+    const token = await this.getToken();
+    const response = await rp(jsonRequest(`artists/${artistId}/top-tracks?country=${this.region}`, token));
+    return (response && response.tracks) || [];
+  }
+
+  async uriRequest(uri) {
+    const token = await this.getToken();
+    const response = await rp(request(uri, token));
+    return response;
   }
 }
 
