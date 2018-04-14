@@ -2,7 +2,6 @@ const log = require('../log')('sonos');
 const { Sonos } = require('sonos');
 
 class SonosClient {
-  // This package maps pretty cleanly. Maybe we don't need this wrapper class.
   constructor(hostAddress) {
     this.sonos = new Sonos(hostAddress);
   }
@@ -51,10 +50,19 @@ class SonosClient {
     return this.sonos.play();
   }
 
+  getFavourites() {
+    return this.sonos.getFavorites();
+  }
+
   async queueNext(uri) {
     const current = await this.sonos.currentTrack();
     const position = ((current && current.queuePosition) || 0) + 1;
     return this.sonos.queue(uri, position);
+  }
+
+  async replaceQueue(uri) {
+    await this.sonos.flush();
+    return this.sonos.play(uri);
   }
 
   setVolume(volume) {

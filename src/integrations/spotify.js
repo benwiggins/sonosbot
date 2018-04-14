@@ -4,8 +4,19 @@ const log = require('../log')('spotify');
 
 const CACHE_KEY = 'spotifyToken';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
-
 const gzip = process.env.NODE_ENV !== 'test';
+
+const jsonRequest = (command, token, query, method = 'GET') => ({
+  method,
+  uri: `${SPOTIFY_API}/${command}`,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  qs: query,
+  json: true,
+  gzip,
+});
+
 class SpotifyClient {
   constructor({ clientId, secret, region }) {
     this.credentials = Buffer.from(`${clientId}:${secret}`).toString('base64');
@@ -37,24 +48,23 @@ class SpotifyClient {
     return token;
   }
 
-  async searchTracks(text) {
+  async searchQuery(query) {
     const token = await this.getToken();
-    const request = {
-      method: 'GET',
-      uri: `${SPOTIFY_API}/search`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      qs: {
-        q: text,
-        type: 'track',
-        market: this.region,
-      },
-      json: true,
-      gzip,
-    };
-    const response = await rp(request);
+    const request = jsonRequest('search', token, {
+      ...query,
+      market: this.region,
+    });
+    return rp(request);
+  }
+
+  async searchTracks(text) {
+    const response = await this.searchQuery({ type: 'track', q: text });
     return (response && response.tracks && response.tracks.items) || [];
+  }
+
+  async searchPlaylists(text) {
+    const response = await this.searchQuery({ type: 'playlist', q: text });
+    return (response && response.playlists && response.playlists.items) || [];
   }
 }
 

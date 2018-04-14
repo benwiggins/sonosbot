@@ -50,7 +50,7 @@ describe('commands', () => {
 *s.* Endless Heights - Come a Little Closer
 *t.* Lemaitre, Jennie A. - Closer
 
-*To play, use the \`add\` command.*`);
+*To add to the queue, use the \`add\` command.*`);
     });
   });
 });
