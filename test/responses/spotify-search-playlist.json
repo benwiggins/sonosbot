@@ -1,0 +1,742 @@
+{
+  "playlists": {
+      "href": "https://api.spotify.com/v1/search?query=while+you+work&type=playlist&market=AU&offset=0&limit=20",
+      "items": [
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/efeghali/playlist/6bUIofrj5PWNIeb67DbUqf"
+              },
+              "href": "https://api.spotify.com/v1/users/efeghali/playlists/6bUIofrj5PWNIeb67DbUqf",
+              "id": "6bUIofrj5PWNIeb67DbUqf",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/0186de977d85a49f3ec551cd8c85e100d9035f64",
+                      "width": null
+                  }
+              ],
+              "name": "While You Work (@whileyouwork)",
+              "owner": {
+                  "display_name": "Eli Feghali",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/efeghali"
+                  },
+                  "href": "https://api.spotify.com/v1/users/efeghali",
+                  "id": "efeghali",
+                  "type": "user",
+                  "uri": "spotify:user:efeghali"
+              },
+              "public": null,
+              "snapshot_id": "a4vTQmpj2J4/OawoHm5vUci7zAZhhegihG+Agx3Ht4RRO4r/i1amQH85bEUCTcJ6",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/efeghali/playlists/6bUIofrj5PWNIeb67DbUqf/tracks",
+                  "total": 3668
+              },
+              "type": "playlist",
+              "uri": "spotify:user:efeghali:playlist:6bUIofrj5PWNIeb67DbUqf"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/postmodernjukebox/playlist/7csrlizJurpn6y0xenTwzu"
+              },
+              "href": "https://api.spotify.com/v1/users/postmodernjukebox/playlists/7csrlizJurpn6y0xenTwzu",
+              "id": "7csrlizJurpn6y0xenTwzu",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/2ed2a01a5a6660e783edaec825eb9e11535206d0",
+                      "width": null
+                  }
+              ],
+              "name": "Vintage While You Work: The Complete Postmodern Jukebox Playlist",
+              "owner": {
+                  "display_name": "scott bradlee's postmodern jukebox",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/postmodernjukebox"
+                  },
+                  "href": "https://api.spotify.com/v1/users/postmodernjukebox",
+                  "id": "postmodernjukebox",
+                  "type": "user",
+                  "uri": "spotify:user:postmodernjukebox"
+              },
+              "public": null,
+              "snapshot_id": "XW2nllTFXDN+IZehsaPgLmQR13YUGJKbd4ZILkfrZNptpTQO0ZCAafwpTsxef97H",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/postmodernjukebox/playlists/7csrlizJurpn6y0xenTwzu/tracks",
+                  "total": 233
+              },
+              "type": "playlist",
+              "uri": "spotify:user:postmodernjukebox:playlist:7csrlizJurpn6y0xenTwzu"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/ryanbattles/playlist/0DOYw5K9vybLVN1lOUO9b5"
+              },
+              "href": "https://api.spotify.com/v1/users/ryanbattles/playlists/0DOYw5K9vybLVN1lOUO9b5",
+              "id": "0DOYw5K9vybLVN1lOUO9b5",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/aac717591ca4e4c553a03d54b088893d9042157e",
+                      "width": null
+                  }
+              ],
+              "name": "Calm Classical",
+              "owner": {
+                  "display_name": null,
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/ryanbattles"
+                  },
+                  "href": "https://api.spotify.com/v1/users/ryanbattles",
+                  "id": "ryanbattles",
+                  "type": "user",
+                  "uri": "spotify:user:ryanbattles"
+              },
+              "public": null,
+              "snapshot_id": "6JlrwmuwnYX5Q9WTbNDwaCUfKlBP5KelUc3IQE13bcUcRo7zJR60SD+VZXg4nyE0",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/ryanbattles/playlists/0DOYw5K9vybLVN1lOUO9b5/tracks",
+                  "total": 68
+              },
+              "type": "playlist",
+              "uri": "spotify:user:ryanbattles:playlist:0DOYw5K9vybLVN1lOUO9b5"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/g25676008721/playlist/0mW1CVzXyrjaZxGUuKdLN5"
+              },
+              "href": "https://api.spotify.com/v1/users/g25676008721/playlists/0mW1CVzXyrjaZxGUuKdLN5",
+              "id": "0mW1CVzXyrjaZxGUuKdLN5",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/49f6e7eee6dc469f99e05d87d93c49d8a3e0c7ea",
+                      "width": null
+                  }
+              ],
+              "name": "HipHop Instrumentals | Jazz | Boom Bap | Lofi | Beats",
+              "owner": {
+                  "display_name": "jack buckley",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/g25676008721"
+                  },
+                  "href": "https://api.spotify.com/v1/users/g25676008721",
+                  "id": "g25676008721",
+                  "type": "user",
+                  "uri": "spotify:user:g25676008721"
+              },
+              "public": null,
+              "snapshot_id": "eB/+34dkwa1PJxhavQc2msiVmBGxA/YKQ85jY4LivXphYrFJYUD1aklQ301/7RNs",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/g25676008721/playlists/0mW1CVzXyrjaZxGUuKdLN5/tracks",
+                  "total": 433
+              },
+              "type": "playlist",
+              "uri": "spotify:user:g25676008721:playlist:0mW1CVzXyrjaZxGUuKdLN5"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/dovahkiinvasnormandy/playlist/28vU3WOa6uDLrb0RcWbP1C"
+              },
+              "href": "https://api.spotify.com/v1/users/dovahkiinvasnormandy/playlists/28vU3WOa6uDLrb0RcWbP1C",
+              "id": "28vU3WOa6uDLrb0RcWbP1C",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/5971ca87f536cf9a403ed65c63a3cddfcb0b87b6",
+                      "width": null
+                  }
+              ],
+              "name": "while(!success){ work++; }",
+              "owner": {
+                  "display_name": null,
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/dovahkiinvasnormandy"
+                  },
+                  "href": "https://api.spotify.com/v1/users/dovahkiinvasnormandy",
+                  "id": "dovahkiinvasnormandy",
+                  "type": "user",
+                  "uri": "spotify:user:dovahkiinvasnormandy"
+              },
+              "public": null,
+              "snapshot_id": "nVs07iUOUora1RzK71Syzuku7PBlNzSNSdcjzGu9IF6C2rBAs9qV04wbVsRM54qu",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/dovahkiinvasnormandy/playlists/28vU3WOa6uDLrb0RcWbP1C/tracks",
+                  "total": 461
+              },
+              "type": "playlist",
+              "uri": "spotify:user:dovahkiinvasnormandy:playlist:28vU3WOa6uDLrb0RcWbP1C"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/227okadunfbiwumjfg4rnfseq/playlist/3omoAOjcgbU5pjEQ11PNTQ"
+              },
+              "href": "https://api.spotify.com/v1/users/227okadunfbiwumjfg4rnfseq/playlists/3omoAOjcgbU5pjEQ11PNTQ",
+              "id": "3omoAOjcgbU5pjEQ11PNTQ",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://mosaic.scdn.co/640/64a7ae4a4804ae88f3b93af220c2eff8ee9b2882aed3d3eafce0d4dfcfec2a0b4e84c20b8a3ee8a9ca67e401902a838e54b76166586a9c2850a6b4abcfd1f1a4aa2581affaba0ddb7c57baa1c530d0d5",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://mosaic.scdn.co/300/64a7ae4a4804ae88f3b93af220c2eff8ee9b2882aed3d3eafce0d4dfcfec2a0b4e84c20b8a3ee8a9ca67e401902a838e54b76166586a9c2850a6b4abcfd1f1a4aa2581affaba0ddb7c57baa1c530d0d5",
+                      "width": 300
+                  },
+                  {
+                      "height": 60,
+                      "url": "https://mosaic.scdn.co/60/64a7ae4a4804ae88f3b93af220c2eff8ee9b2882aed3d3eafce0d4dfcfec2a0b4e84c20b8a3ee8a9ca67e401902a838e54b76166586a9c2850a6b4abcfd1f1a4aa2581affaba0ddb7c57baa1c530d0d5",
+                      "width": 60
+                  }
+              ],
+              "name": "Homework Vibes",
+              "owner": {
+                  "display_name": null,
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/227okadunfbiwumjfg4rnfseq"
+                  },
+                  "href": "https://api.spotify.com/v1/users/227okadunfbiwumjfg4rnfseq",
+                  "id": "227okadunfbiwumjfg4rnfseq",
+                  "type": "user",
+                  "uri": "spotify:user:227okadunfbiwumjfg4rnfseq"
+              },
+              "public": null,
+              "snapshot_id": "jBsZTanCDq6vRaJJm8+pqEywhLSP9YPU2gs6jFNs/rG+9dpfGKStkLoxDX3i/vv5",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/227okadunfbiwumjfg4rnfseq/playlists/3omoAOjcgbU5pjEQ11PNTQ/tracks",
+                  "total": 369
+              },
+              "type": "playlist",
+              "uri": "spotify:user:227okadunfbiwumjfg4rnfseq:playlist:3omoAOjcgbU5pjEQ11PNTQ"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/flosoft/playlist/3dd65gH0SbHJrNBLbAKlmN"
+              },
+              "href": "https://api.spotify.com/v1/users/flosoft/playlists/3dd65gH0SbHJrNBLbAKlmN",
+              "id": "3dd65gH0SbHJrNBLbAKlmN",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/ad9ee993f71a9a343eee9a92234e367d1c2ebb0f",
+                      "width": null
+                  }
+              ],
+              "name": "Calm Mood",
+              "owner": {
+                  "display_name": "Florian Jensen",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/flosoft"
+                  },
+                  "href": "https://api.spotify.com/v1/users/flosoft",
+                  "id": "flosoft",
+                  "type": "user",
+                  "uri": "spotify:user:flosoft"
+              },
+              "public": null,
+              "snapshot_id": "5jzIbwPRPpboh9tOFF7x9lxe9d7Q4ODmTH6mEJoYIqvtNL+5vANHk39AM+vx1/It",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/flosoft/playlists/3dd65gH0SbHJrNBLbAKlmN/tracks",
+                  "total": 139
+              },
+              "type": "playlist",
+              "uri": "spotify:user:flosoft:playlist:3dd65gH0SbHJrNBLbAKlmN"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/jc415/playlist/6YAaz7iWVOCwXTiphSNYbN"
+              },
+              "href": "https://api.spotify.com/v1/users/jc415/playlists/6YAaz7iWVOCwXTiphSNYbN",
+              "id": "6YAaz7iWVOCwXTiphSNYbN",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/7d4e21afc6ef23ca8e32ecd4437d4f7dca7cf5ef",
+                      "width": null
+                  }
+              ],
+              "name": "☁️ Soft",
+              "owner": {
+                  "display_name": "Cooking Music",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/jc415"
+                  },
+                  "href": "https://api.spotify.com/v1/users/jc415",
+                  "id": "jc415",
+                  "type": "user",
+                  "uri": "spotify:user:jc415"
+              },
+              "public": null,
+              "snapshot_id": "aTDJC/Mp87oxQ/Gfp83KY+cubYE7sN89VKySHc6WV9ql9m1GVHCP9XmbXraYj1Q5",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/jc415/playlists/6YAaz7iWVOCwXTiphSNYbN/tracks",
+                  "total": 178
+              },
+              "type": "playlist",
+              "uri": "spotify:user:jc415:playlist:6YAaz7iWVOCwXTiphSNYbN"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/1142127885/playlist/7qSDwwHVtfGWzn5Hp9cMQt"
+              },
+              "href": "https://api.spotify.com/v1/users/1142127885/playlists/7qSDwwHVtfGWzn5Hp9cMQt",
+              "id": "7qSDwwHVtfGWzn5Hp9cMQt",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/a03b234c453cb6d4d1dfd64d608c402cd3017876",
+                      "width": null
+                  }
+              ],
+              "name": "Work at home",
+              "owner": {
+                  "display_name": "Patricia Serra Campos",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/1142127885"
+                  },
+                  "href": "https://api.spotify.com/v1/users/1142127885",
+                  "id": "1142127885",
+                  "type": "user",
+                  "uri": "spotify:user:1142127885"
+              },
+              "public": null,
+              "snapshot_id": "R64UawMsGPBA7DHdXf0pd2lGoHETVkmMrixvAd6y+mEsGSHkGe7xGjLrjpUoPUOW",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/1142127885/playlists/7qSDwwHVtfGWzn5Hp9cMQt/tracks",
+                  "total": 849
+              },
+              "type": "playlist",
+              "uri": "spotify:user:1142127885:playlist:7qSDwwHVtfGWzn5Hp9cMQt"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/1231404233/playlist/5t1ghJ1L4QoWzsIbR2BFCf"
+              },
+              "href": "https://api.spotify.com/v1/users/1231404233/playlists/5t1ghJ1L4QoWzsIbR2BFCf",
+              "id": "5t1ghJ1L4QoWzsIbR2BFCf",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/3c8b6fe1e04b10262e54e2aef4840394ade1f3e9",
+                      "width": null
+                  }
+              ],
+              "name": "Non-vocal trance for working",
+              "owner": {
+                  "display_name": "Sean Murphy",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/1231404233"
+                  },
+                  "href": "https://api.spotify.com/v1/users/1231404233",
+                  "id": "1231404233",
+                  "type": "user",
+                  "uri": "spotify:user:1231404233"
+              },
+              "public": null,
+              "snapshot_id": "F9YZ49YOrDmjgl4LAk1LFnbn/KPJtyVPC6Z4DiboWULCbKTI+XgTctWzRV+KiikH",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/1231404233/playlists/5t1ghJ1L4QoWzsIbR2BFCf/tracks",
+                  "total": 40
+              },
+              "type": "playlist",
+              "uri": "spotify:user:1231404233:playlist:5t1ghJ1L4QoWzsIbR2BFCf"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/mattias_varmkorv/playlist/7hgx4rgAfbQR2VvIqEZPJA"
+              },
+              "href": "https://api.spotify.com/v1/users/mattias_varmkorv/playlists/7hgx4rgAfbQR2VvIqEZPJA",
+              "id": "7hgx4rgAfbQR2VvIqEZPJA",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/a276cc0f32dec4fced061c2137ae2b78e41173c3",
+                      "width": null
+                  }
+              ],
+              "name": "Game Theme Songs",
+              "owner": {
+                  "display_name": "Mattias Hinnerson",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/mattias_varmkorv"
+                  },
+                  "href": "https://api.spotify.com/v1/users/mattias_varmkorv",
+                  "id": "mattias_varmkorv",
+                  "type": "user",
+                  "uri": "spotify:user:mattias_varmkorv"
+              },
+              "public": null,
+              "snapshot_id": "PY9fjY9QL4k2zmWxzd+Xn53KcU8XYdx+VakBwctdB2P811ExyBS6UoNdbMJ+vg/K",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/mattias_varmkorv/playlists/7hgx4rgAfbQR2VvIqEZPJA/tracks",
+                  "total": 275
+              },
+              "type": "playlist",
+              "uri": "spotify:user:mattias_varmkorv:playlist:7hgx4rgAfbQR2VvIqEZPJA"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/notforbreakfast/playlist/2WbgW78C72ydbTBwymNQG9"
+              },
+              "href": "https://api.spotify.com/v1/users/notforbreakfast/playlists/2WbgW78C72ydbTBwymNQG9",
+              "id": "2WbgW78C72ydbTBwymNQG9",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/d78116526f937e0156c9344d72b22b494094c892",
+                      "width": null
+                  }
+              ],
+              "name": "Disney Instrumentals Work Playlist",
+              "owner": {
+                  "display_name": "Ashley Keene",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/notforbreakfast"
+                  },
+                  "href": "https://api.spotify.com/v1/users/notforbreakfast",
+                  "id": "notforbreakfast",
+                  "type": "user",
+                  "uri": "spotify:user:notforbreakfast"
+              },
+              "public": null,
+              "snapshot_id": "3dG1iW0JzC4Ww8/tZyhZjXwYY52x4L4Snv/8vR7NnUhJ9dYVrJsl2Q3bVxX99XOE",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/notforbreakfast/playlists/2WbgW78C72ydbTBwymNQG9/tracks",
+                  "total": 64
+              },
+              "type": "playlist",
+              "uri": "spotify:user:notforbreakfast:playlist:2WbgW78C72ydbTBwymNQG9"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/dog.eared88/playlist/1W4fugqSGkWOC1yox8VwnO"
+              },
+              "href": "https://api.spotify.com/v1/users/dog.eared88/playlists/1W4fugqSGkWOC1yox8VwnO",
+              "id": "1W4fugqSGkWOC1yox8VwnO",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://mosaic.scdn.co/640/403d7d3b6ef12efdfc3d90a375316581a92400ea80086ba63884182bbf7f5e7cfe2aef8a18ba39448f4b2a35e3c28e2af99df05501b06a54ac4dbfbcb68b39fdc2409d0f526ad48775ddcd93ff496cda",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://mosaic.scdn.co/300/403d7d3b6ef12efdfc3d90a375316581a92400ea80086ba63884182bbf7f5e7cfe2aef8a18ba39448f4b2a35e3c28e2af99df05501b06a54ac4dbfbcb68b39fdc2409d0f526ad48775ddcd93ff496cda",
+                      "width": 300
+                  },
+                  {
+                      "height": 60,
+                      "url": "https://mosaic.scdn.co/60/403d7d3b6ef12efdfc3d90a375316581a92400ea80086ba63884182bbf7f5e7cfe2aef8a18ba39448f4b2a35e3c28e2af99df05501b06a54ac4dbfbcb68b39fdc2409d0f526ad48775ddcd93ff496cda",
+                      "width": 60
+                  }
+              ],
+              "name": "Whistle While You Work!",
+              "owner": {
+                  "display_name": null,
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/dog.eared88"
+                  },
+                  "href": "https://api.spotify.com/v1/users/dog.eared88",
+                  "id": "dog.eared88",
+                  "type": "user",
+                  "uri": "spotify:user:dog.eared88"
+              },
+              "public": null,
+              "snapshot_id": "NO6hf6HqQdEYfVg6bkB4UuCtsxMXlRYHF0uz07fJUTUNOKxz3gHJxs91V/Nib3Eo",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/dog.eared88/playlists/1W4fugqSGkWOC1yox8VwnO/tracks",
+                  "total": 663
+              },
+              "type": "playlist",
+              "uri": "spotify:user:dog.eared88:playlist:1W4fugqSGkWOC1yox8VwnO"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/dantanielspotify/playlist/5U678yPMkHpg7Or9ru5Edv"
+              },
+              "href": "https://api.spotify.com/v1/users/dantanielspotify/playlists/5U678yPMkHpg7Or9ru5Edv",
+              "id": "5U678yPMkHpg7Or9ru5Edv",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://mosaic.scdn.co/640/246023584c58d21debb5b94d0eabaca95d53a7cb5e64556d18c1712e3be3d2975b0b107ea06d69d1a85a383caabcb686da7cff16ac4302a3c2dba018c216b1b93b4faf18e77ca0e4bc043733b07fdc33",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://mosaic.scdn.co/300/246023584c58d21debb5b94d0eabaca95d53a7cb5e64556d18c1712e3be3d2975b0b107ea06d69d1a85a383caabcb686da7cff16ac4302a3c2dba018c216b1b93b4faf18e77ca0e4bc043733b07fdc33",
+                      "width": 300
+                  },
+                  {
+                      "height": 60,
+                      "url": "https://mosaic.scdn.co/60/246023584c58d21debb5b94d0eabaca95d53a7cb5e64556d18c1712e3be3d2975b0b107ea06d69d1a85a383caabcb686da7cff16ac4302a3c2dba018c216b1b93b4faf18e77ca0e4bc043733b07fdc33",
+                      "width": 60
+                  }
+              ],
+              "name": "KPM 1000 Series (groovy music—while you work)",
+              "owner": {
+                  "display_name": null,
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/dantanielspotify"
+                  },
+                  "href": "https://api.spotify.com/v1/users/dantanielspotify",
+                  "id": "dantanielspotify",
+                  "type": "user",
+                  "uri": "spotify:user:dantanielspotify"
+              },
+              "public": null,
+              "snapshot_id": "bpUO4jpKvoTR2QNMSXfVNKqtChevnLccDl8Ro7CIiULhbz+oGTAin3HMoDKiOSJh",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/dantanielspotify/playlists/5U678yPMkHpg7Or9ru5Edv/tracks",
+                  "total": 698
+              },
+              "type": "playlist",
+              "uri": "spotify:user:dantanielspotify:playlist:5U678yPMkHpg7Or9ru5Edv"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/684q2c4uaprgroip3d4to0j03/playlist/1thpSDtk8VJmCAafZrjepc"
+              },
+              "href": "https://api.spotify.com/v1/users/684q2c4uaprgroip3d4to0j03/playlists/1thpSDtk8VJmCAafZrjepc",
+              "id": "1thpSDtk8VJmCAafZrjepc",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/594273ff89315936332ddadd587fc5d8004c8036",
+                      "width": null
+                  }
+              ],
+              "name": "Work, study or relax with Jacob",
+              "owner": {
+                  "display_name": "Jacob",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/684q2c4uaprgroip3d4to0j03"
+                  },
+                  "href": "https://api.spotify.com/v1/users/684q2c4uaprgroip3d4to0j03",
+                  "id": "684q2c4uaprgroip3d4to0j03",
+                  "type": "user",
+                  "uri": "spotify:user:684q2c4uaprgroip3d4to0j03"
+              },
+              "public": null,
+              "snapshot_id": "XrwT/4TzOc7YtEItTI7Yj6jErVR42lujYiVoF1n3lXXh7BqeAdHN0fVKNewHqNO2",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/684q2c4uaprgroip3d4to0j03/playlists/1thpSDtk8VJmCAafZrjepc/tracks",
+                  "total": 26
+              },
+              "type": "playlist",
+              "uri": "spotify:user:684q2c4uaprgroip3d4to0j03:playlist:1thpSDtk8VJmCAafZrjepc"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/1125786077/playlist/6Q7fANrq0OMlA9e72rUT9h"
+              },
+              "href": "https://api.spotify.com/v1/users/1125786077/playlists/6Q7fANrq0OMlA9e72rUT9h",
+              "id": "6Q7fANrq0OMlA9e72rUT9h",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/2f56fb5d247697cb8904d044dc5bd361c8403ce2",
+                      "width": null
+                  }
+              ],
+              "name": "Dariadaria Office Tunes",
+              "owner": {
+                  "display_name": "dariadaria",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/1125786077"
+                  },
+                  "href": "https://api.spotify.com/v1/users/1125786077",
+                  "id": "1125786077",
+                  "type": "user",
+                  "uri": "spotify:user:1125786077"
+              },
+              "public": null,
+              "snapshot_id": "mDkWDKbD58JohtpU0HlP8Xk31hnH9QkJUVCb+e4TDjyI7uv6a0I+sebn07QPe1Cz",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/1125786077/playlists/6Q7fANrq0OMlA9e72rUT9h/tracks",
+                  "total": 22
+              },
+              "type": "playlist",
+              "uri": "spotify:user:1125786077:playlist:6Q7fANrq0OMlA9e72rUT9h"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/scott04069419/playlist/721IDYz5WqovHi4ozx1v36"
+              },
+              "href": "https://api.spotify.com/v1/users/scott04069419/playlists/721IDYz5WqovHi4ozx1v36",
+              "id": "721IDYz5WqovHi4ozx1v36",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://mosaic.scdn.co/640/125f4cae2d7d56c1d920b9f59a7e1a9c61dd4e93b708b051802da39dd03610578c33121ee665bebad7306b94d223ea5bd3f9b66ff62fead1380f58c3f6cbe739a78ca9990971598c327927e2a0c5fe58",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://mosaic.scdn.co/300/125f4cae2d7d56c1d920b9f59a7e1a9c61dd4e93b708b051802da39dd03610578c33121ee665bebad7306b94d223ea5bd3f9b66ff62fead1380f58c3f6cbe739a78ca9990971598c327927e2a0c5fe58",
+                      "width": 300
+                  },
+                  {
+                      "height": 60,
+                      "url": "https://mosaic.scdn.co/60/125f4cae2d7d56c1d920b9f59a7e1a9c61dd4e93b708b051802da39dd03610578c33121ee665bebad7306b94d223ea5bd3f9b66ff62fead1380f58c3f6cbe739a78ca9990971598c327927e2a0c5fe58",
+                      "width": 60
+                  }
+              ],
+              "name": "Cat Purring Sounds",
+              "owner": {
+                  "display_name": null,
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/scott04069419"
+                  },
+                  "href": "https://api.spotify.com/v1/users/scott04069419",
+                  "id": "scott04069419",
+                  "type": "user",
+                  "uri": "spotify:user:scott04069419"
+              },
+              "public": null,
+              "snapshot_id": "aSLSz40Q4gFjdr/Weznc0G+IzF6VkGEe4l7DSRaunv3j13uKOFiCV6icbNWWLNEd",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/scott04069419/playlists/721IDYz5WqovHi4ozx1v36/tracks",
+                  "total": 64
+              },
+              "type": "playlist",
+              "uri": "spotify:user:scott04069419:playlist:721IDYz5WqovHi4ozx1v36"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/ojaister/playlist/3xq3GN3QDMn7ujOK66oid7"
+              },
+              "href": "https://api.spotify.com/v1/users/ojaister/playlists/3xq3GN3QDMn7ujOK66oid7",
+              "id": "3xq3GN3QDMn7ujOK66oid7",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://mosaic.scdn.co/640/0d13751c0f0e847c903c4ac0403111fe6cb362288a1e946745048bb88eb6012bca3a7031a4c27aaaab07c9072bbe413d8187125010d0b3f6025803fab8b2a5ce30a26bb1d4369410a4458555c012669f",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://mosaic.scdn.co/300/0d13751c0f0e847c903c4ac0403111fe6cb362288a1e946745048bb88eb6012bca3a7031a4c27aaaab07c9072bbe413d8187125010d0b3f6025803fab8b2a5ce30a26bb1d4369410a4458555c012669f",
+                      "width": 300
+                  },
+                  {
+                      "height": 60,
+                      "url": "https://mosaic.scdn.co/60/0d13751c0f0e847c903c4ac0403111fe6cb362288a1e946745048bb88eb6012bca3a7031a4c27aaaab07c9072bbe413d8187125010d0b3f6025803fab8b2a5ce30a26bb1d4369410a4458555c012669f",
+                      "width": 60
+                  }
+              ],
+              "name": "Instrumental Office Music to work to",
+              "owner": {
+                  "display_name": "Todd Hess",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/ojaister"
+                  },
+                  "href": "https://api.spotify.com/v1/users/ojaister",
+                  "id": "ojaister",
+                  "type": "user",
+                  "uri": "spotify:user:ojaister"
+              },
+              "public": null,
+              "snapshot_id": "J3SwK4zK93Gbjg7Ga912x2qLu+8XtddiFFg6+nBDc7kqkiUStV3MIUSGi5hqBbqj",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/ojaister/playlists/3xq3GN3QDMn7ujOK66oid7/tracks",
+                  "total": 182
+              },
+              "type": "playlist",
+              "uri": "spotify:user:ojaister:playlist:3xq3GN3QDMn7ujOK66oid7"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/22lx2ciuc46xomsqegniklona/playlist/2qMKhtDywIdC0xk2FIa6zu"
+              },
+              "href": "https://api.spotify.com/v1/users/22lx2ciuc46xomsqegniklona/playlists/2qMKhtDywIdC0xk2FIa6zu",
+              "id": "2qMKhtDywIdC0xk2FIa6zu",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/d9d47be025e7518ae984f40d11e29f3c3fa62bd7",
+                      "width": null
+                  }
+              ],
+              "name": "Workday Worship",
+              "owner": {
+                  "display_name": "Trust'd",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/22lx2ciuc46xomsqegniklona"
+                  },
+                  "href": "https://api.spotify.com/v1/users/22lx2ciuc46xomsqegniklona",
+                  "id": "22lx2ciuc46xomsqegniklona",
+                  "type": "user",
+                  "uri": "spotify:user:22lx2ciuc46xomsqegniklona"
+              },
+              "public": null,
+              "snapshot_id": "meoD8TGmcSVqCdSuejL6k2AIu6W+7gAX+w9gB1N9zQaF0POAuxV0yf57dkhL7gOP",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/22lx2ciuc46xomsqegniklona/playlists/2qMKhtDywIdC0xk2FIa6zu/tracks",
+                  "total": 75
+              },
+              "type": "playlist",
+              "uri": "spotify:user:22lx2ciuc46xomsqegniklona:playlist:2qMKhtDywIdC0xk2FIa6zu"
+          },
+          {
+              "collaborative": false,
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/user/janmarisp/playlist/62MeIsn2DLGRswimfKq9ry"
+              },
+              "href": "https://api.spotify.com/v1/users/janmarisp/playlists/62MeIsn2DLGRswimfKq9ry",
+              "id": "62MeIsn2DLGRswimfKq9ry",
+              "images": [
+                  {
+                      "height": null,
+                      "url": "https://pl.scdn.co/images/pl/default/aea95407a6d10b6649f2f395658bc3ba8abeadeb",
+                      "width": null
+                  }
+              ],
+              "name": "Work/Study",
+              "owner": {
+                  "display_name": "Janmaris Perez",
+                  "external_urls": {
+                      "spotify": "https://open.spotify.com/user/janmarisp"
+                  },
+                  "href": "https://api.spotify.com/v1/users/janmarisp",
+                  "id": "janmarisp",
+                  "type": "user",
+                  "uri": "spotify:user:janmarisp"
+              },
+              "public": null,
+              "snapshot_id": "rSyKJpjd54FrginRAvY3IcBy1nUDlXVwgbk3J0SPRKVEYokyVHtgUOnhY2GsVof6",
+              "tracks": {
+                  "href": "https://api.spotify.com/v1/users/janmarisp/playlists/62MeIsn2DLGRswimfKq9ry/tracks",
+                  "total": 87
+              },
+              "type": "playlist",
+              "uri": "spotify:user:janmarisp:playlist:62MeIsn2DLGRswimfKq9ry"
+          }
+      ],
+      "limit": 20,
+      "next": "https://api.spotify.com/v1/search?query=while+you+work&type=playlist&market=AU&offset=20&limit=20",
+      "offset": 0,
+      "previous": null,
+      "total": 633
+  }
+}

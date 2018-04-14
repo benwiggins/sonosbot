@@ -29,11 +29,16 @@ class SpotifyClient {
   }
 
   async getToken() {
-    const token = await this.cache.get(CACHE_KEY);
+    let token = await this.cache.get(CACHE_KEY);
     if (token) {
       return token;
     }
-    return this.generateAccessToken();
+    const tokenData = await this.generateAccessToken();
+
+    token = tokenData.access_token;
+    const ttl = tokenData.expires_in * 0.95; // Just in case, lower the ttl a bit
+    this.cache.set(CACHE_KEY, token, ttl);
+    return token;
   }
 
   async generateAccessToken() {
@@ -46,10 +51,7 @@ class SpotifyClient {
       json: true,
       gzip,
     });
-    const token = tokenData.access_token;
-    const ttl = tokenData.expires_in * 0.95; // Just in case, lower the ttl a bit
-    this.cache.set(CACHE_KEY, token, ttl);
-    return token;
+    return tokenData;
   }
 
   async searchQuery(query) {

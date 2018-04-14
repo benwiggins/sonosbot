@@ -1,0 +1,784 @@
+{
+  "artists": {
+      "href": "https://api.spotify.com/v1/search?query=james&type=artist&market=AU&offset=0&limit=20",
+      "items": [
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/4csQIMQm6vI2A2SCVDuM2z"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 82637
+              },
+              "genres": [
+                  "aussietronica",
+                  "deep australian indie",
+                  "deep indie r&b",
+                  "gauze pop",
+                  "house",
+                  "tropical house",
+                  "vapor soul"
+              ],
+              "href": "https://api.spotify.com/v1/artists/4csQIMQm6vI2A2SCVDuM2z",
+              "id": "4csQIMQm6vI2A2SCVDuM2z",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/2dafd45295903af961f14ee02c2b289e166b3651",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/fc7cbd43cf76e8c2311e02f4876645d2760dd7f8",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/3dfd3288588a2b14beffaa198df4d4d2d9df37dc",
+                      "width": 160
+                  }
+              ],
+              "name": "Hayden James",
+              "popularity": 66,
+              "type": "artist",
+              "uri": "spotify:artist:4csQIMQm6vI2A2SCVDuM2z"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/4IWBUUAFIplrNtaOHcJPRM"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 1786524
+              },
+              "genres": [
+                  "neo mellow",
+                  "pop",
+                  "post-teen pop",
+                  "talent show"
+              ],
+              "href": "https://api.spotify.com/v1/artists/4IWBUUAFIplrNtaOHcJPRM",
+              "id": "4IWBUUAFIplrNtaOHcJPRM",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/53294aac516859e07b7ce913f458f6a9adc940ed",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/6ecd4acdc7bc0947169225964a6913d74fa4064e",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/eaef2a287223b75fc780e3e6070b4acab90aea32",
+                      "width": 160
+                  }
+              ],
+              "name": "James Arthur",
+              "popularity": 82,
+              "type": "artist",
+              "uri": "spotify:artist:4IWBUUAFIplrNtaOHcJPRM"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/25tMQOrIU4LlUo6Sv8v5SE"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 138304
+              },
+              "genres": [
+                  "indie folk",
+                  "neo mellow",
+                  "pop",
+                  "viral pop"
+              ],
+              "href": "https://api.spotify.com/v1/artists/25tMQOrIU4LlUo6Sv8v5SE",
+              "id": "25tMQOrIU4LlUo6Sv8v5SE",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/c8874f366fb4c6efb615527db354007e1fa3f2b6",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/86c49842606de52600769b7b7e5dc14fc97d928a",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/aac64e356ac7f7a2774ba49c79540b165eafc2ad",
+                      "width": 160
+                  }
+              ],
+              "name": "Gavin James",
+              "popularity": 74,
+              "type": "artist",
+              "uri": "spotify:artist:25tMQOrIU4LlUo6Sv8v5SE"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/4EzkuveR9pLvDVFNx6foYD"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 1667965
+              },
+              "genres": [
+                  "neo mellow",
+                  "pop",
+                  "singer-songwriter"
+              ],
+              "href": "https://api.spotify.com/v1/artists/4EzkuveR9pLvDVFNx6foYD",
+              "id": "4EzkuveR9pLvDVFNx6foYD",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/51e72b278a79bb105f6e01a78aa13c5eaff5e3ca",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/7cdade65aca32c8f142c0584e7188a4b324f3664",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/553892097e8b1a28f1a63ae8ad755912509f9d2f",
+                      "width": 160
+                  }
+              ],
+              "name": "James Bay",
+              "popularity": 79,
+              "type": "artist",
+              "uri": "spotify:artist:4EzkuveR9pLvDVFNx6foYD"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/0B3N0ZINFWvizfa8bKiz4v"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 111300
+              },
+              "genres": [
+                  "neo mellow",
+                  "pop",
+                  "pop rock",
+                  "post-teen pop",
+                  "viral pop"
+              ],
+              "href": "https://api.spotify.com/v1/artists/0B3N0ZINFWvizfa8bKiz4v",
+              "id": "0B3N0ZINFWvizfa8bKiz4v",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/74d0a93fb00b0937eee56449adaf240539376b17",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/f006b35300432f4a8efaf12ae1bd344ce8a68743",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/55ddb8930164c4c8ab3ce2b403b609237f256aae",
+                      "width": 160
+                  }
+              ],
+              "name": "James TW",
+              "popularity": 73,
+              "type": "artist",
+              "uri": "spotify:artist:0B3N0ZINFWvizfa8bKiz4v"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/53KwLdlmrlCelAZMaLVZqU"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 680697
+              },
+              "genres": [
+                  "deep indie r&b",
+                  "indie folk",
+                  "indie r&b",
+                  "indietronica",
+                  "neo soul"
+              ],
+              "href": "https://api.spotify.com/v1/artists/53KwLdlmrlCelAZMaLVZqU",
+              "id": "53KwLdlmrlCelAZMaLVZqU",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/efc5929cdd084261b5c9cac997d752506dc38c1a",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/11e1a887c7c9f5cd0d596957950845cf04cc602d",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/7dd2b73aa5e1feb83ea5f6bed8bf993edae251c2",
+                      "width": 160
+                  }
+              ],
+              "name": "James Blake",
+              "popularity": 80,
+              "type": "artist",
+              "uri": "spotify:artist:53KwLdlmrlCelAZMaLVZqU"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/7KMqksf0UMdyA0UCf4R3ux"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 1321358
+              },
+              "genres": [
+                  "neo mellow",
+                  "pop rock"
+              ],
+              "href": "https://api.spotify.com/v1/artists/7KMqksf0UMdyA0UCf4R3ux",
+              "id": "7KMqksf0UMdyA0UCf4R3ux",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/5fae108dc2929aad680ee95fe082816767ef2838",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/e03cad8227350bc21596131b6b57bedb252cddb7",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/8a84a558373888913d9aae27132cdc4178ff2c7b",
+                      "width": 160
+                  }
+              ],
+              "name": "James Blunt",
+              "popularity": 76,
+              "type": "artist",
+              "uri": "spotify:artist:7KMqksf0UMdyA0UCf4R3ux"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/23IZADrJHPStZ6aMxJVq3s"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 87080
+              },
+              "genres": [
+                  "aussietronica",
+                  "deep australian indie",
+                  "indie r&b"
+              ],
+              "href": "https://api.spotify.com/v1/artists/23IZADrJHPStZ6aMxJVq3s",
+              "id": "23IZADrJHPStZ6aMxJVq3s",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/7977be12cd47368cb3fc968536304b288d2730c3",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/27402a241341f1def9effba7268fad4358a6d6c1",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/f2bd43468b0f6159bbed884ad64d3c0add7c1ef4",
+                      "width": 160
+                  }
+              ],
+              "name": "Jarryd James",
+              "popularity": 59,
+              "type": "artist",
+              "uri": "spotify:artist:23IZADrJHPStZ6aMxJVq3s"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/7FDlvgcodNfC0IBdWevl4u"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 407343
+              },
+              "genres": [
+                  "chamber pop",
+                  "folk-pop",
+                  "indie anthem-folk",
+                  "indie folk",
+                  "indie r&b",
+                  "neo mellow",
+                  "stomp and holler"
+              ],
+              "href": "https://api.spotify.com/v1/artists/7FDlvgcodNfC0IBdWevl4u",
+              "id": "7FDlvgcodNfC0IBdWevl4u",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/0edabfbe78ccb80f62b93d5ac7185a924f0847eb",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/779c83db26be8ee63e2e61d5c81159b4c94ea6d0",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/138efce281b8b3a977cbc4f405c1997df46bc221",
+                      "width": 160
+                  }
+              ],
+              "name": "James Vincent McMorrow",
+              "popularity": 68,
+              "type": "artist",
+              "uri": "spotify:artist:7FDlvgcodNfC0IBdWevl4u"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3LpLGlgRS1IKPPwElnpW35"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 699950
+              },
+              "genres": [
+                  "folk christmas",
+                  "neo mellow",
+                  "pop",
+                  "pop christmas",
+                  "pop rock",
+                  "singer-songwriter",
+                  "viral pop"
+              ],
+              "href": "https://api.spotify.com/v1/artists/3LpLGlgRS1IKPPwElnpW35",
+              "id": "3LpLGlgRS1IKPPwElnpW35",
+              "images": [
+                  {
+                      "height": 960,
+                      "url": "https://i.scdn.co/image/3d3c8418abb81c770223c39b485bd5e5006a8789",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://i.scdn.co/image/7146576ab8b76ae87c6dfcf280b865b7eea18097",
+                      "width": 200
+                  },
+                  {
+                      "height": 96,
+                      "url": "https://i.scdn.co/image/e9a81176371b5febd2f3c901a531ee6c69fca05c",
+                      "width": 64
+                  }
+              ],
+              "name": "James Morrison",
+              "popularity": 69,
+              "type": "artist",
+              "uri": "spotify:artist:3LpLGlgRS1IKPPwElnpW35"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/0vn7UBvSQECKJm2817Yf1P"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 556086
+              },
+              "genres": [
+                  "adult standards",
+                  "classic rock",
+                  "folk",
+                  "folk christmas",
+                  "folk rock",
+                  "mellow gold",
+                  "rock",
+                  "roots rock",
+                  "singer-songwriter",
+                  "soft rock"
+              ],
+              "href": "https://api.spotify.com/v1/artists/0vn7UBvSQECKJm2817Yf1P",
+              "id": "0vn7UBvSQECKJm2817Yf1P",
+              "images": [
+                  {
+                      "height": 1000,
+                      "url": "https://i.scdn.co/image/747d0d0f181eb1c4bce048d4f905622b14647e83",
+                      "width": 1000
+                  },
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/a2b61e4b56ac755a86898d6d2d3edcd967f5fca1",
+                      "width": 640
+                  },
+                  {
+                      "height": 200,
+                      "url": "https://i.scdn.co/image/a1d46914981b6059b9b41328d5def41a31f248d8",
+                      "width": 200
+                  },
+                  {
+                      "height": 64,
+                      "url": "https://i.scdn.co/image/61dea47e017e255583e745c7e3f388cf12297c93",
+                      "width": 64
+                  }
+              ],
+              "name": "James Taylor",
+              "popularity": 71,
+              "type": "artist",
+              "uri": "spotify:artist:0vn7UBvSQECKJm2817Yf1P"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/6iQluOJNzmmaXVVCA0XgbY"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 1562
+              },
+              "genres": [],
+              "href": "https://api.spotify.com/v1/artists/6iQluOJNzmmaXVVCA0XgbY",
+              "id": "6iQluOJNzmmaXVVCA0XgbY",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/5352ddc2a6ded312627b75ec811cabd4fae93656",
+                      "width": 640
+                  },
+                  {
+                      "height": 300,
+                      "url": "https://i.scdn.co/image/72dcdbc98c654e85b5a4251ddb24f8557b2e466b",
+                      "width": 300
+                  },
+                  {
+                      "height": 64,
+                      "url": "https://i.scdn.co/image/0b455f2069ae65a581d42ae33ef4fd4ba6e7345b",
+                      "width": 64
+                  }
+              ],
+              "name": "Fergus James",
+              "popularity": 46,
+              "type": "artist",
+              "uri": "spotify:artist:6iQluOJNzmmaXVVCA0XgbY"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/65oocmSeB6z75kHwrZo1le"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 5750
+              },
+              "genres": [],
+              "href": "https://api.spotify.com/v1/artists/65oocmSeB6z75kHwrZo1le",
+              "id": "65oocmSeB6z75kHwrZo1le",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/a26735201d996db814d3d65f40d6ecae41411aa4",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/6696f2db58b365bfaf15f9d51b1db49f0b583e64",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/1ed196895d29d1367d8b11ba26bf5d658aecdd35",
+                      "width": 160
+                  }
+              ],
+              "name": "Mitch James",
+              "popularity": 56,
+              "type": "artist",
+              "uri": "spotify:artist:65oocmSeB6z75kHwrZo1le"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3PhL2Vdao2v8SS8AptuhAr"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 162944
+              },
+              "genres": [
+                  "scorecore",
+                  "soundtrack"
+              ],
+              "href": "https://api.spotify.com/v1/artists/3PhL2Vdao2v8SS8AptuhAr",
+              "id": "3PhL2Vdao2v8SS8AptuhAr",
+              "images": [
+                  {
+                      "height": 1000,
+                      "url": "https://i.scdn.co/image/cf3b34dae12d2d8147b8c2b39387047778d587e3",
+                      "width": 1000
+                  },
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/bbe181a99bca82d2673dfc83dc1b6430dddc89e0",
+                      "width": 640
+                  },
+                  {
+                      "height": 200,
+                      "url": "https://i.scdn.co/image/0048b4ee0319a3079610db280af025a233ad2679",
+                      "width": 200
+                  },
+                  {
+                      "height": 64,
+                      "url": "https://i.scdn.co/image/b9cf08f9b15580c19275b285236ba52aa524c571",
+                      "width": 64
+                  }
+              ],
+              "name": "James Horner",
+              "popularity": 70,
+              "type": "artist",
+              "uri": "spotify:artist:3PhL2Vdao2v8SS8AptuhAr"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/4v0Hh2bdIAJnaUqAOipfYs"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 24771
+              },
+              "genres": [
+                  "australian pop"
+              ],
+              "href": "https://api.spotify.com/v1/artists/4v0Hh2bdIAJnaUqAOipfYs",
+              "id": "4v0Hh2bdIAJnaUqAOipfYs",
+              "images": [
+                  {
+                      "height": 1000,
+                      "url": "https://i.scdn.co/image/fa5df3ebbdc4001ad95fc051c3b62865538b0f20",
+                      "width": 1000
+                  },
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/fff97af0e8472b8f7db1b33aff0149b6f9daab81",
+                      "width": 640
+                  },
+                  {
+                      "height": 200,
+                      "url": "https://i.scdn.co/image/db5c1e1ae8eab4946a2a3ce479c4d4be3f2b4809",
+                      "width": 200
+                  },
+                  {
+                      "height": 64,
+                      "url": "https://i.scdn.co/image/5bdcb947b3274e6c8b27403421a130dddd78fce1",
+                      "width": 64
+                  }
+              ],
+              "name": "James Reyne",
+              "popularity": 45,
+              "type": "artist",
+              "uri": "spotify:artist:4v0Hh2bdIAJnaUqAOipfYs"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/48sLioddyaXkuhyHXSkpsB"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 39120
+              },
+              "genres": [],
+              "href": "https://api.spotify.com/v1/artists/48sLioddyaXkuhyHXSkpsB",
+              "id": "48sLioddyaXkuhyHXSkpsB",
+              "images": [
+                  {
+                      "height": 1000,
+                      "url": "https://i.scdn.co/image/1984464f3d5124adf326e1e2dd4725279d23773e",
+                      "width": 1000
+                  },
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/34ee9c8db5fd2e8cbf10fea755d03638ce5b7dab",
+                      "width": 640
+                  },
+                  {
+                      "height": 200,
+                      "url": "https://i.scdn.co/image/9a64a2225a7a80700fd7d94df0e097c718feface",
+                      "width": 200
+                  },
+                  {
+                      "height": 64,
+                      "url": "https://i.scdn.co/image/16bc23581b6851b08bfc626a10b82b4791cc4c11",
+                      "width": 64
+                  }
+              ],
+              "name": "Parson James",
+              "popularity": 68,
+              "type": "artist",
+              "uri": "spotify:artist:48sLioddyaXkuhyHXSkpsB"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/7GMpkbegUlL4UvUe5w47zu"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 1416
+              },
+              "genres": [
+                  "focus"
+              ],
+              "href": "https://api.spotify.com/v1/artists/7GMpkbegUlL4UvUe5w47zu",
+              "id": "7GMpkbegUlL4UvUe5w47zu",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/8061427be5854229678d3142ad3d39daa6754903",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/57e6579111f4a026494c21630f91da1af0dae00b",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/49bd6cd26ba0069e1f76d36a251ced687dfb97d7",
+                      "width": 160
+                  }
+              ],
+              "name": "James Heather",
+              "popularity": 62,
+              "type": "artist",
+              "uri": "spotify:artist:7GMpkbegUlL4UvUe5w47zu"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/0I5HubncQ8E1MFZOlPDY4J"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 172471
+              },
+              "genres": [
+                  "crunk",
+                  "dirty south rap",
+                  "gangster rap",
+                  "pop rap",
+                  "rap",
+                  "southern hip hop",
+                  "trap music"
+              ],
+              "href": "https://api.spotify.com/v1/artists/0I5HubncQ8E1MFZOlPDY4J",
+              "id": "0I5HubncQ8E1MFZOlPDY4J",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/34b132ce383fb1799be3042b1de37e05d3b3ed86",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/1d5603656e8b07c9831d58d6e39e4c0a7f1206ec",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/e3b85eab380c25113de38ca687a39df74c8a2ce4",
+                      "width": 160
+                  }
+              ],
+              "name": "Trinidad James",
+              "popularity": 66,
+              "type": "artist",
+              "uri": "spotify:artist:0I5HubncQ8E1MFZOlPDY4J"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/4sOcMLlr0hMwrLXScjAgoq"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 3225
+              },
+              "genres": [],
+              "href": "https://api.spotify.com/v1/artists/4sOcMLlr0hMwrLXScjAgoq",
+              "id": "4sOcMLlr0hMwrLXScjAgoq",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/595cac59867abfce3fe218a48958d432772cbffb",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/1babb5cb12b4cefa24089e7893d3f87fbc24c34c",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/a05393541be1ac288fdda8d54c0f54b15d6e2c52",
+                      "width": 160
+                  }
+              ],
+              "name": "James Chatburn",
+              "popularity": 48,
+              "type": "artist",
+              "uri": "spotify:artist:4sOcMLlr0hMwrLXScjAgoq"
+          },
+          {
+              "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/0qLNsNKm8bQcMoRFkR8Hmh"
+              },
+              "followers": {
+                  "href": null,
+                  "total": 165463
+              },
+              "genres": [
+                  "britpop",
+                  "dance rock",
+                  "madchester",
+                  "new wave",
+                  "new wave pop",
+                  "permanent wave",
+                  "pop rock",
+                  "rock"
+              ],
+              "href": "https://api.spotify.com/v1/artists/0qLNsNKm8bQcMoRFkR8Hmh",
+              "id": "0qLNsNKm8bQcMoRFkR8Hmh",
+              "images": [
+                  {
+                      "height": 640,
+                      "url": "https://i.scdn.co/image/bd196a08ccb7488998a5fcad0b53e98b2a1a1b5a",
+                      "width": 640
+                  },
+                  {
+                      "height": 320,
+                      "url": "https://i.scdn.co/image/592883783934df7e17399385037d8b95465bec45",
+                      "width": 320
+                  },
+                  {
+                      "height": 160,
+                      "url": "https://i.scdn.co/image/8d3cea60e4a4fd8e917e981e81fd167c508585e7",
+                      "width": 160
+                  }
+              ],
+              "name": "James",
+              "popularity": 61,
+              "type": "artist",
+              "uri": "spotify:artist:0qLNsNKm8bQcMoRFkR8Hmh"
+          }
+      ],
+      "limit": 20,
+      "next": "https://api.spotify.com/v1/search?query=james&type=artist&market=AU&offset=20&limit=20",
+      "offset": 0,
+      "previous": null,
+      "total": 10438
+  }
+}
