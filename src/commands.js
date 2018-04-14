@@ -17,6 +17,7 @@ let gongCount = 0;
 let gongUri;
 let gongUsers = [];
 
+const getRandom = (array = []) => array[Math.floor(Math.random() * array.length)];
 const formatArtists = item => item.artists.map(a => a.name).join(', ');
 const formatTrack = track => `${formatArtists(track)} - ${track.name}`;
 const formatAlbum = (album) => {
@@ -84,12 +85,13 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     const index = currentTrack.queuePosition - 1;
 
     const result = await sonosClient.getQueue(index, limit);
-    if (!result && result.items) {
+    if (!(result && result.items)) {
       return GENERIC_ERROR;
     }
 
     const np = idx => currentTrack.uri === result.items[idx].uri;
 
+    log(result);
     const items = result.items.map((i, idx) =>
       `*${idx + index + 1}.* ${np(idx) ? '*' : ''}${i.artist} - ${i.title}${np(idx) ? '* :notes:' : ''}`);
 
@@ -298,7 +300,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
   *\`stop\`*: Stop the music entirely. :(
   *\`pause\`*: Pause Sonos
   *\`playlist\`*: Replace the current queue with a Spotify playlist. You can specify the full text ` +
-    `or the character code returned from a \`searchplaylist\`
+    `or the character code returned from a \`searchplaylist\`.
   *\`previous\`*: Go to the previous track
   *\`play\`*: Play or unpause Sonos`;
 
@@ -406,31 +408,49 @@ ${playlistNames.join('\n')}
   const switchPlaylist = async (text) => {
     const setQueue = uri => sonosClient.replaceQueue(uri);
     let playlist;
-
+    let prefix = '';
     if (!(text && text.length)) {
-      return 'What am I playing?';
+      const favourites = await sonosClient.getFavouriteSpotifyPlaylists();
+      if (favourites && favourites.length) {
+        playlist = getRandom(favourites);
+        prefix = 'No playlist specified, picking from your Sonos favourites...\n';
+      }
+      if (!playlist) {
+        const { items } = await spotifyClient.getFeaturedPlaylists();
+        if (items && items.length) {
+          playlist = getRandom(items);
+          prefix = 'No playlist specified, picking from Spotify featured playlists...\n';
+        }
+      }
+      if (!playlist) {
+        return 'Nothing to play :(';
+      }
     }
-    if (lastResult.playlists && lastResult.playlists.length) {
-      if (isChar(text)) {
-        playlist = lastResult.playlists[charToIndex(text)];
+    if (!playlist) {
+      if (lastResult.playlists && lastResult.playlists.length) {
+        if (isChar(text)) {
+          playlist = lastResult.playlists[charToIndex(text)];
+        } else {
+          playlist = lastResult.playlists.find(p => p.name.toLowerCase().startsWith(text.toLowerCase()));
+        }
       } else {
-        playlist = lastResult.playlists.find(p => p.name.toLowerCase().startsWith(text.toLowerCase()));
+        // Otherwise just search
+        const newSearch = await spotifyClient.searchPlaylists(text);
+        if (!(newSearch && newSearch.length)) {
+          return 'I could not find that playlist. Have you tried `searchplaylist`ing for it?';
+        }
+        playlist = newSearch && newSearch[0];
       }
-    } else {
-      // Otherwise just search
-      const newSearch = await spotifyClient.searchPlaylists(text);
-      if (!(newSearch && newSearch.length)) {
-        return 'I could not find that playlist. Have you tried `searchplaylist`ing for it?';
-      }
-      playlist = newSearch && newSearch[0];
     }
     if (playlist) {
+      log(playlist);
       const added = await setQueue(playlist.uri);
       if (added) {
         const trackList = await list();
-        return `*${playlist.name}* is now playing!\n\n${trackList}`;
+        return `${prefix}*${playlist.name}* is now playing!\n\n${trackList}`;
       }
     }
+
     return GENERIC_ERROR;
   };
 

@@ -87,6 +87,12 @@ class SpotifyClient {
     return (response && response.tracks) || [];
   }
 
+  async getFeaturedPlaylists() {
+    const token = await this.getToken();
+    const response = await rp(jsonRequest(`browse/featured-playlists?country=${this.region}`, token));
+    return (response && response.playlists) || [];
+  }
+
   async uriRequest(uri) {
     const token = await this.getToken();
     const response = await rp(request(uri, token));
