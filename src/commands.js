@@ -51,46 +51,69 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-  const help = () => `*I understand the following commands:*\n
+  const help = () => `>>>*I understand the following commands:*\n
   *\`search\`* _text_: Search for a track
   *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code ` +
-  `returned from a \`search\`.
+    `returned from a \`search\`.
   *\`current\`*: Display the currently playing track.
   *\`gong\`*: Express your dislike for the current track. ${gongLimit} gongs and it will be skipped.
   *\`help\`*: Display this message.
   *\`list\`*: Display the current Sonos queue.
   *\`status\`*: Get the current Sonos status.
-  *\`volume\`*: List current volume.`;
-
-  const adminHelp = () => `${help()}\n\n*Admin functions:*\n
+  *\`volume\`*: List current volume.\n\n*Admin commands:*\n
   *\`blacklist\`*: List users currently blacklisted
   *\`blacklist add @username\`*: Add a user to the blacklist
   *\`blacklist del @username\`*: Remove a user from the blacklist
   *\`next\`*: Skip to the next track
   *\`setvolume\`*: Set Sonos volume
   *\`shuffle\`*: (Re)shuffle the playlist
+  *\`stop\`*: Stop the music entirely. :(
   *\`pause\`*: Pause Sonos
   *\`previous\`*: Go to the previous track
   *\`play\`*: Play or unpause Sonos`;
 
-  const blacklist = async (args) => {
+  const blacklist = async (args, user) => {
+    const addUser = (username) => {
+      const result = slackClient.addToBlacklist(username);
+      if (result === undefined) {
+        return `An error occurred adding ${username} to the blacklist.`;
+      }
+      if (result) {
+        return `${username} has been added to the blacklist.`;
+      }
+      return `${username} was already on the blacklist.`;
+    };
+    const removeUser = (username) => {
+      const result = slackClient.removeFromBlacklist(username);
+      if (result === undefined) {
+        return `An error occurred removing ${username} from the blacklist.`;
+      }
+      if (result) {
+        return `${username} has been removed from the blacklist.`;
+      }
+      return `${username} was not on the blacklist.`;
+    };
+
     if (args) {
-      const [operation, user] = args.split(' ');
+      const [operation, targetUser] = args.split(' ');
       switch (operation) {
         case 'add':
-          if (!user) {
+          if (!targetUser) {
             return 'Usage: `blacklist add @username`';
           }
-          await slackClient.addToBlacklist(user);
-          return `${user} has been added to the blacklist.`;
-        case 'del':
-          if (!user) {
-            return 'Usage: `blacklist del @username`';
+          if (targetUser === `<@${user}>`) {
+            return "You really shouldn't blacklist yourself.";
           }
-          await slackClient.removeFromBlacklist(user);
-          return `${user} has been removed from the blacklist.`;
+          return addUser(targetUser);
+
+        case 'del':
+        case 'remove':
+          if (!targetUser) {
+            return `Usage: \`blacklist ${operation} @username\``;
+          }
+          return removeUser(targetUser);
         default:
-          break;
+          return 'Invalid blacklist command. I understand `add` and `del / `remove`';
       }
     }
 
@@ -239,7 +262,6 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
   return {
     adminCommands: {
       blacklist,
-      help: adminHelp,
       next,
       pause,
       play,

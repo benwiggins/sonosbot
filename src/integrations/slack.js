@@ -10,6 +10,7 @@ class SlackClient {
   }) {
     this.token = token;
     this.client = new RTMClient(token);
+    this.webClient = new WebClient(token);
     this.standardChannel = sanitiseChannel(standardChannel);
     this.adminChannel = sanitiseChannel(adminChannel);
     this.blacklist = [];
@@ -20,8 +21,7 @@ class SlackClient {
   }
 
   async getBlacklistedUsers() {
-    const webClient = new WebClient(this.token);
-    const users = await webClient.users.list();
+    const users = await this.webClient.users.list();
 
     if (users && users.members) {
       return users.members.filter(u => this.blacklist.includes(u.id));
@@ -32,20 +32,29 @@ class SlackClient {
   addToBlacklist(user) {
     if (user.match(/^<@.*>$/)) {
       const id = user.substr(2, user.length - 3);
+      console.log(id);
       if (!this.blacklist.includes(id)) {
         this.blacklist.push(id);
+        return true;
       }
+      return false;
     }
+    return undefined;
   }
 
   removeFromBlacklist(user) {
     if (user.match(/^<@.*>$/)) {
       const id = user.substr(2, user.length - 3);
-      this.blacklist = this.blacklist.filter(b => b !== id);
+      if (this.blacklist.includes(id)) {
+        this.blacklist = this.blacklist.filter(b => b !== id);
+        return true;
+      }
+      return false;
     }
+    return undefined;
   }
 
-  handleMessage(event) {
+  async handleMessage(event) {
     // Don't listen to bots, or ourselves.
     if ((event.subtype && event.subtype === 'bot_message') || event.user === this.client.activeUserId) {
       return;
@@ -58,7 +67,11 @@ class SlackClient {
     }
 
     if (this.messageHandler) {
-      const isAdmin = event.channel === this.adminChannelId;
+      let isAdmin = event.channel === this.adminChannelId;
+      if (!isAdmin) {
+        const { group } = await this.webClient.groups.info({ channel: this.adminChannelId });
+        isAdmin = group.members.includes(event.user);
+      }
       this.messageHandler(event, isAdmin);
     }
   }
@@ -67,10 +80,8 @@ class SlackClient {
     this.client.start();
     log('Slack Client started');
 
-    const webClient = new WebClient(this.token);
-    const { channels } = await webClient.channels.list(); // Public channels
-    const { groups } = await webClient.groups.list(); // Private channels
-
+    const { channels } = await this.webClient.channels.list(); // Public channels
+    const { groups } = await this.webClient.groups.list(); // Private channels
     const allChannels = [...channels.filter(c => c.is_member && !c.is_archived), ...groups.filter(g => !g.is_archived)];
 
     const standardChannel = allChannels.find(c => c.name === this.standardChannel);
