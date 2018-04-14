@@ -22,6 +22,7 @@ class SpotifyClient {
     this.credentials = Buffer.from(`${clientId}:${secret}`).toString('base64');
     this.cache = new NodeCache();
     this.region = region || 'US';
+    log(`Spotify region: ${this.region}`);
   }
 
   async getToken() {
