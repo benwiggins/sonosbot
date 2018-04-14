@@ -174,7 +174,15 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-  const blacklist = async (args, user) => {
+  const blacklist = async () => {
+    const users = await slackClient.getBlacklistedUsers();
+    if (users && users.length) {
+      return `The following users are on the blacklist: ${users.map(u => `<@${u.id}>`).join(', ')}`;
+    }
+    return 'There are no users on the blacklist';
+  };
+
+  const adminBlacklist = async (args, user) => {
     const addUser = (username) => {
       const result = slackClient.addToBlacklist(username);
       if (result === undefined) {
@@ -218,12 +226,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
           return 'Invalid blacklist command. I understand `add` and `del / `remove`';
       }
     }
-
-    const users = await slackClient.getBlacklistedUsers();
-    if (users && users.length) {
-      return `The following users are on the blacklist: ${users.map(u => `<@${u.id}>`).join(', ')}`;
-    }
-    return 'There are no users on the blacklist';
+    return blacklist();
   };
 
   const getCurrent = async () => {
@@ -278,14 +281,14 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
   *\`current\`*: Display the currently playing track.
   *\`gong\`*: Express your dislike for the current track. ${gongLimit} gongs and it will be skipped.
   *\`searchalbum\`* _text_: Search for an album
-  *\`searchalbum\`* _text_: Search for an artist
+  *\`searchartist\`* _text_: Search for an artist
   *\`addalbum\`* _text_: Add an entire album to the queue.
   *\`addartist\`* _text_: Add an artist's top tracks to the queue.
+  *\`blacklist\`*: List users currently blacklisted
   *\`help\`*: Display this message.
   *\`list\`*: Display the current Sonos queue.
   *\`status\`*: Get the current Sonos status.
   *\`volume\`*: List current volume.\n\n*Admin commands:*\n
-  *\`blacklist\`*: List users currently blacklisted
   *\`blacklist add @username\`*: Add a user to the blacklist
   *\`blacklist del @username\`*: Remove a user from the blacklist
   *\`next\`*: Skip to the next track
@@ -451,7 +454,7 @@ ${playlistNames.join('\n')}
 
   return {
     adminCommands: {
-      blacklist,
+      blacklist: adminBlacklist,
       next,
       pause,
       play,
@@ -466,6 +469,7 @@ ${playlistNames.join('\n')}
       add,
       addalbum: addAlbum,
       addartist: addArtist,
+      blacklist,
       current: getCurrent,
       gong,
       help,
