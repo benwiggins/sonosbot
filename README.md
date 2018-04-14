@@ -1,4 +1,8 @@
 # sonosbot
+[![Build Status](https://img.shields.io/travis/benwiggins/sonosbot.svg?style=flat-square)](https://travis-ci.org/benwiggins/sonosbot)
+[![Dependency Status](https://img.shields.io/david/benwiggins/sonosbot.svg?style=flat-square)](https://david-dm.org/benwiggins/sonosbot)
+[![Known Vulnerabilities](https://snyk.io/test/github/benwiggins/sonosbot/badge.svg?style=flat-square)](https://snyk.io/test/github/benwiggins/sonosbot)
+
 ## Control Sonos/Spotify through Slack
 
 ### Details
