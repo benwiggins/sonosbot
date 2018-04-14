@@ -7,7 +7,7 @@ const {
   isChar,
 } = require('./utils');
 
-const { gongLimit } = require('../config/config.json');
+const { gongLimit } = require('./config');
 
 const ADD_NOT_SPECFIED = 'What am I adding?';
 const NOT_FOUND = "I couldn't find anything :(";
