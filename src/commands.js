@@ -314,7 +314,8 @@ ${playlistNames.join('\n')}
   const shuffle = async () => {
     const shuffled = await sonosClient.shuffle();
     if (shuffled) {
-      return 'Every day I’m shufflin...\'';
+      const trackList = await list();
+      return `Every day I’m shufflin'...\n\n${trackList}`;
     }
     return GENERIC_ERROR;
   };
