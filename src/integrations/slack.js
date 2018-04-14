@@ -45,7 +45,7 @@ class SlackClient {
     }
   }
 
-  async handleMessage(event) {
+  handleMessage(event) {
     // Don't listen to bots, or ourselves.
     if ((event.subtype && event.subtype === 'bot_message') || event.user === this.client.activeUserId) {
       return;
@@ -53,7 +53,7 @@ class SlackClient {
     log(event);
 
     if (this.blacklist.includes(event.user)) {
-      await this.sendMessage(`Nice try, <@${event.user}>, you're banned!`, event.channel);
+      this.sendMessage(`Nice try, <@${event.user}>, you're banned!`, event.channel);
       return;
     }
 

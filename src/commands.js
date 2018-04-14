@@ -75,25 +75,30 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
 
   const blacklist = async (args) => {
     if (args) {
-      const words = args.split(' ');
-
-      switch (words[0]) {
+      const [operation, user] = args.split(' ');
+      switch (operation) {
         case 'add':
-          await slackClient.addToBlacklist(words[1]);
-          break;
+          if (!user) {
+            return 'Usage: `blacklist add @username`';
+          }
+          await slackClient.addToBlacklist(user);
+          return `${user} has been added to the blacklist.`;
         case 'del':
-          await slackClient.removeFromBlacklist(words[1]);
-          break;
+          if (!user) {
+            return 'Usage: `blacklist del @username`';
+          }
+          await slackClient.removeFromBlacklist(user);
+          return `${user} has been removed from the blacklist.`;
         default:
-          return 'Invalid command';
+          break;
       }
     }
 
     const users = await slackClient.getBlacklistedUsers();
-    if (!(users && users.length)) {
-      return 'There are no users on the blacklist';
+    if (users && users.length) {
+      return `The following users are on the blacklist: ${users.map(u => `<@${u.id}>`).join(', ')}`;
     }
-    return `The following users are on the blacklist: ${users.map(u => `<@${u.id}>`).join(', ')}`;
+    return 'There are no users on the blacklist';
   };
 
   const search = async (text) => {
