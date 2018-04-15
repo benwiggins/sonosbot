@@ -2,37 +2,11 @@
   "extends": "airbnb-base",
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
   "rules": {
     "max-len": [1, 120],
     "no-console": 0
-  },
-  "overrides": [{
-    "files": [
-      "src/**/*.test.js",
-      "test/**/*.js"
-    ],
-    "globals": {
-      "after": true,
-      "afterEach": true,
-      "before": true,
-      "beforeEach": true,
-      "chakram": true,
-      "Config": true,
-      "context": true,
-      "describe": true,
-      "Domain": true,
-      "expect": true,
-      "it": true,
-      "jest": true,
-      "sinon": true,
-      "Users": true,
-      "xdescribe": true,
-      "xit": true
-    },
-    "rules": {
-      "no-underscore-dangle": 0
-    }
-  }]
+  }
 }

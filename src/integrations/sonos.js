@@ -57,7 +57,6 @@ class SonosClient {
     const playlists = (items || []).map(item => ({ ...item, uri: queryString.unescape(item.uri) }))
       .filter(item => regex.test(item.uri))
       .map(item => ({ name: item.title, uri: item.uri.match(regex)[0] }));
-    log(playlists);
     return playlists;
   }
 

@@ -1,10 +1,7 @@
-const chai = require('chai');
-const spies = require('chai-spies');
+const { chai } = require('./testHelper');
+const nock = require('nock');
 
 const { expect } = chai;
-chai.use(spies);
-
-const nock = require('nock');
 
 const Commands = require('../src/commands');
 const SpotifyClient = require('../src/integrations/spotify');
