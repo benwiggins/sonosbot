@@ -10,7 +10,8 @@
     "start": "DEBUG=sonosbot:* node index.js",
     "lint": "./node_modules/.bin/eslint 'src/**/*.js'",
     "test": "NODE_ENV=${NODE_ENV:=test} DEBUG=sonosbot:*,test:* ./node_modules/.bin/mocha --recursive --exit --timeout 10000",
-    "test-coverage": "nyc yarn test"
+    "test-coverage": "nyc yarn test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "husky": {
     "hooks": {

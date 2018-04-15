@@ -390,7 +390,8 @@ ${artistNames.join('\n')}\n
       spotifyClient.searchPlaylists(text)]);
 
     if (favourites && favourites.length) {
-      const matchingPlaylists = favourites.filter((playlist, idx) => idx < ITEM_LIMIT && wordSearch(text, playlist.name));
+      const matchingPlaylists = favourites
+        .filter((playlist, idx) => idx < ITEM_LIMIT && wordSearch(text, playlist.name));
       if (matchingPlaylists && matchingPlaylists.length) {
         playlists.push(...matchingPlaylists);
       }
