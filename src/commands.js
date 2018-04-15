@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const log = require('./log')();
 const {
   charToIndex,
@@ -5,6 +6,7 @@ const {
   formatSeconds,
   indexToChar,
   isChar,
+  wordSearch,
 } = require('./utils');
 
 const { gongLimit } = require('./config');
@@ -12,6 +14,7 @@ const { gongLimit } = require('./config');
 const ADD_NOT_SPECFIED = 'What am I adding?';
 const NOT_FOUND = "I couldn't find anything :(";
 const GENERIC_ERROR = 'Something went wrong :(';
+const ITEM_LIMIT = 20;
 
 let gongCount = 0;
 let gongUri;
@@ -380,14 +383,36 @@ ${artistNames.join('\n')}\n
   };
 
   const searchPlaylists = async (text) => {
-    const playlists = await spotifyClient.searchPlaylists(text);
-    lastResult = { playlists: (playlists || []) };
+    const playlists = [];
+
+    const [favourites, spotifyPlaylists] = await Promise.all([
+      sonosClient.getFavouriteSpotifyPlaylists(),
+      spotifyClient.searchPlaylists(text)]);
+
+    if (favourites && favourites.length) {
+      const matchingPlaylists = favourites.filter((playlist, idx) => idx < ITEM_LIMIT && wordSearch(text, playlist.name));
+      if (matchingPlaylists && matchingPlaylists.length) {
+        playlists.push(...matchingPlaylists);
+      }
+    }
+
+    if (playlists.length < ITEM_LIMIT) {
+      if (spotifyPlaylists && spotifyPlaylists.length) {
+        const existingUris = favourites.map(p => p.uri);
+        const remainingPlaylists = spotifyPlaylists
+          .filter(playlist => !existingUris.includes(playlist.uri))
+          .slice(0, ITEM_LIMIT - playlists.length);
+        playlists.push(...remainingPlaylists);
+      }
+    }
+
+    lastResult = { playlists };
 
     if (!(playlists && playlists.length)) {
       return NOT_FOUND;
     }
     const playlistNames = playlists.map((p, idx) =>
-      `*${indexToChar(idx)}.* ${p.name}  _(${p.tracks.total || 0} tracks)_`);
+      `*${indexToChar(idx)}.* ${p.name}  _(${_.get(p, 'tracks.total', 0)} tracks)_`);
 
     return `*I found the following playlists:*\n
 ${playlistNames.join('\n')}
