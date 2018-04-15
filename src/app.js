@@ -37,7 +37,9 @@ const doStuff = async () => {
     const keyword = words[0].toLowerCase();
     const args = words.slice(1).join(' ');
 
-    const responseFunction = (isAdmin && adminCommands[keyword]) || commands[keyword];
+    const adminFunction = adminCommands[keyword];
+    const standardFunction = commands[keyword];
+    const responseFunction = (isAdmin && adminFunction) || standardFunction;
 
     if (responseFunction) {
       try {
@@ -50,6 +52,8 @@ const doStuff = async () => {
       } catch (err) {
         log(err);
       }
+    } else if (adminFunction && !isAdmin) {
+      slackClient.sendMessage(`Sorry <@${event.user}>, only admins can do that.`, event.channel);
     }
   };
   slackClient.onMessage = messageHandler;
