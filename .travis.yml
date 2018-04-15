@@ -6,4 +6,4 @@ node_js:
 
 cache: yarn
 
-after_success: yarn coverage
+after_success: yarn coveralls
