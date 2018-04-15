@@ -1,7 +1,8 @@
 FROM node:8-alpine
 
-WORKDIR /usr/src/app
+RUN yarn global add pm2
 
+WORKDIR /usr/src/app
 COPY package.json ./
 COPY yarn.lock ./
 
@@ -9,4 +10,7 @@ RUN yarn --production
 
 COPY . .
 
-CMD [ "yarn", "start"]
+RUN adduser -S sonosbot
+USER sonosbot
+
+CMD [ "pm2-runtime", "index.js" ]
