@@ -109,9 +109,11 @@ class SlackClient {
     }
 
     const response = {
+      attachments: [attachment],
+      as_user: true,
       channel,
       text,
-      attachments: [attachment],
+      username: this.client.activeUserId,
     };
 
     return this.webClient.chat.postMessage(response);
