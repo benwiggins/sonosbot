@@ -13,9 +13,7 @@ if ! [ $USER == "root" ]; then
   exit 1
 fi
 
-apt-get remove -y cmdtest
-apt-get update 
-apt-get install -y curl gnupg systemd
+apt-get update
 
 echo Adding Yarn source...
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -26,6 +24,9 @@ curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 echo Installing Node.js and Yarn...
 apt-get install -y nodejs yarn
+
+echo Installing packages...
+yarn --production
 
 echo Copying app...
 if [ ! -d /opt/sonosbot ]; then
@@ -40,7 +41,7 @@ useradd -g sonosbot sonosbot
 chown -R sonosbot:sonosbot /opt/sonosbot
 
 echo Configuring service...
-cat <<'EOF' >> /etc/systemd/system/sonosbot.service
+cat <<'EOF' > /etc/systemd/system/sonosbot.service
 [Unit]
 Description=sonosbot
 
