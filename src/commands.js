@@ -61,7 +61,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       } else {
         track = lastResult.tracks.find(t => formatTrack(t).toLowerCase().startsWith(text.toLowerCase()));
       }
-    } else {
+    }
+    if (!track) {
       // Otherwise just search
       const newSearch = await spotifyClient.searchTracks(text);
       if (!(newSearch && newSearch.length)) {
@@ -114,7 +115,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       } else {
         album = lastResult.albums.find(a => formatAlbum(a).toLowerCase().startsWith(text.toLowerCase()));
       }
-    } else {
+    }
+    if (!album) {
       // Otherwise just search
       const newSearch = await spotifyClient.searchAlbums(text);
       if (!(newSearch && newSearch.length)) {
@@ -155,7 +157,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       } else {
         artist = lastResult.artists.find(a => a.name.toLowerCase().startsWith(text.toLowerCase()));
       }
-    } else {
+    }
+    if (!artist) {
       // Otherwise just search
       const newSearch = await spotifyClient.searchArtists(text);
       if (!(newSearch && newSearch.length)) {
@@ -459,7 +462,8 @@ ${playlistNames.join('\n')}
         } else {
           playlist = lastResult.playlists.find(p => p.name.toLowerCase().startsWith(text.toLowerCase()));
         }
-      } else {
+      }
+      if (!playlist) {
         // Otherwise just search
         const newSearch = await spotifyClient.searchPlaylists(text);
         if (!(newSearch && newSearch.length)) {
