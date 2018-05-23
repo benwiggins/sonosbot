@@ -35,7 +35,7 @@
     "debug": "^3.1.0",
     "lodash": "^4.17.5",
     "node-cache": "^4.2.0",
-    "request": "^2.86.0",
+    "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
     "sonos": "^1.1.2",
     "supports-color": "^5.3.0"
