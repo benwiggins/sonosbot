@@ -1,5 +1,5 @@
-const { chai } = require('./testHelper');
 const nock = require('nock');
+const { chai } = require('./testHelper');
 
 const { expect } = chai;
 
@@ -67,7 +67,8 @@ describe('commands', () => {
     });
     it('returns a list of albums', async () => {
       const response = await commands.commands.searchalbum('ok computer');
-      expect(response).to.equal(`*I found the following albums:*
+      expect(response).to.equal(
+        `*I found the following albums:*
 
 *a.* Radiohead - OK Computer (1997)
 *b.* Radiohead - OK Computer OKNOTOK 1997 2017 (2017)
@@ -75,10 +76,11 @@ describe('commands', () => {
 *d.* Mozzy - Ok Computer (2015)
 *e.* The Gentlemen Of NUCO - Radiohead's OK Computer (2009)
 *f.* C. Greenwood, J. Greenwood, P. Selway, E O’Brien, T. Yorke, Vitamin String Quartet` +
-        ` - Strung Out On OK Computer - The String Quartet Tribute To Radiohead (2001)
+          ` - Strung Out On OK Computer - The String Quartet Tribute To Radiohead (2001)
 *g.* Molotov Cocktail Piano - MCP Performs Radiohead: OK Computer (2017)
 
-*To add to the queue, use the \`addalbum\` command.*`);
+*To add to the queue, use the \`addalbum\` command.*`
+      );
     });
   });
 
@@ -123,7 +125,9 @@ describe('commands', () => {
       nock('https://api.spotify.com')
         .get('/v1/search')
         .query({ q: 'while you work', type: 'playlist', market: 'AU' })
-        .replyWithFile(200, json('spotify-search-playlist'), { 'Content-Type': 'application/json' });
+        .replyWithFile(200, json('spotify-search-playlist'), {
+          'Content-Type': 'application/json',
+        });
     });
     it('returns a list of playlists', async () => {
       const response = await commands.adminCommands.searchplaylist('while you work');
@@ -171,12 +175,11 @@ describe('commands', () => {
       await commands.commands.searchalbum('ok computer');
       const response = await commands.commands.addalbum('b');
 
-      const expectedResult =
-        {
-          text: 'Album added to queue.',
-          body: '*OK Computer OKNOTOK 1997 2017*\nRadiohead\n_2017_',
-          thumbUrl: 'https://i.scdn.co/image/819b35407ee4fe3da687cbacd8017b4448f0775b',
-        };
+      const expectedResult = {
+        text: 'Album added to queue.',
+        body: '*OK Computer OKNOTOK 1997 2017*\nRadiohead\n_2017_',
+        thumbUrl: 'https://i.scdn.co/image/819b35407ee4fe3da687cbacd8017b4448f0775b',
+      };
       expect(response).to.deep.equal(expectedResult);
     });
   });

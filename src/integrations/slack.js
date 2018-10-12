@@ -1,13 +1,9 @@
-const log = require('../log')('slack');
 const { RTMClient, WebClient } = require('@slack/client');
+const log = require('../log')('slack');
 const { sanitiseChannel } = require('../utils');
 
 class SlackClient {
-  constructor({
-    adminChannel,
-    standardChannel,
-    token,
-  }) {
+  constructor({ adminChannel, standardChannel, token }) {
     this.token = token;
     this.client = new RTMClient(token);
     this.webClient = new WebClient(token);
@@ -56,7 +52,10 @@ class SlackClient {
 
   async handleMessage(event) {
     // Don't listen to bots, or ourselves.
-    if ((event.subtype && event.subtype === 'bot_message') || event.user === this.client.activeUserId) {
+    if (
+      (event.subtype && event.subtype === 'bot_message') ||
+      event.user === this.client.activeUserId
+    ) {
       return;
     }
     log(event);
@@ -82,7 +81,10 @@ class SlackClient {
 
     const { channels } = await this.webClient.channels.list(); // Public channels
     const { groups } = await this.webClient.groups.list(); // Private channels
-    const allChannels = [...channels.filter(c => c.is_member && !c.is_archived), ...groups.filter(g => !g.is_archived)];
+    const allChannels = [
+      ...channels.filter(c => c.is_member && !c.is_archived),
+      ...groups.filter(g => !g.is_archived),
+    ];
 
     const standardChannel = allChannels.find(c => c.name === this.standardChannel);
     const adminChannel = allChannels.find(c => c.name === this.adminChannel);

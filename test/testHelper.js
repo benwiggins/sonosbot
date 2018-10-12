@@ -6,4 +6,3 @@ chai.use(dirtyChai);
 chai.use(spies);
 
 module.exports = { chai };
-

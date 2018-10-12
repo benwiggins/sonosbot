@@ -1,6 +1,6 @@
-const log = require('../log')('sonos');
 const { Sonos } = require('sonos');
 const queryString = require('querystring');
+const log = require('../log')('sonos');
 
 class SonosClient {
   constructor(hostAddress) {
@@ -54,7 +54,8 @@ class SonosClient {
   async getFavouriteSpotifyPlaylists() {
     const regex = /spotify:user:.*:playlist:(.*)$/;
     const { items } = await this.sonos.getFavorites();
-    const playlists = (items || []).map(item => ({ ...item, uri: queryString.unescape(item.uri) }))
+    const playlists = (items || [])
+      .map(item => ({ ...item, uri: queryString.unescape(item.uri) }))
       .filter(item => regex.test(item.uri))
       .map(item => ({ name: item.title, uri: item.uri.match(regex)[0] }));
     return playlists;

@@ -85,13 +85,17 @@ class SpotifyClient {
 
   async getTopTracks(artistId) {
     const token = await this.getToken();
-    const response = await rp(jsonRequest(`artists/${artistId}/top-tracks?country=${this.region}`, token));
+    const response = await rp(
+      jsonRequest(`artists/${artistId}/top-tracks?country=${this.region}`, token)
+    );
     return (response && response.tracks) || [];
   }
 
   async getFeaturedPlaylists() {
     const token = await this.getToken();
-    const response = await rp(jsonRequest(`browse/featured-playlists?country=${this.region}`, token));
+    const response = await rp(
+      jsonRequest(`browse/featured-playlists?country=${this.region}`, token)
+    );
     return (response && response.playlists) || [];
   }
 

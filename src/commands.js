@@ -23,12 +23,12 @@ let gongUsers = [];
 const getRandom = (array = []) => array[Math.floor(Math.random() * array.length)];
 const formatArtists = item => item.artists.map(a => a.name).join(', ');
 const formatTrack = track => `${formatArtists(track)} - ${track.name}`;
-const formatAlbum = (album) => {
+const formatAlbum = album => {
   const year = album.release_date.substring(0, 4);
   return `${formatArtists(album)} - ${album.name} (${year})`;
 };
 
-const formatTrackDetail = (track) => {
+const formatTrackDetail = track => {
   const albumYear = track.album.release_date.substring(0, 4);
   const length = formatMilliseconds(track.duration_ms);
 
@@ -38,7 +38,7 @@ _${track.album.name}_
 _${albumYear}_`;
 };
 
-const formatAlbumDetail = (album) => {
+const formatAlbumDetail = album => {
   const albumYear = album.release_date.substring(0, 4);
   return `*${album.name}*
 ${formatArtists(album)}
@@ -48,7 +48,7 @@ _${albumYear}_`;
 module.exports = (spotifyClient, sonosClient, slackClient) => {
   let lastResult = {};
 
-  const add = async (text) => {
+  const add = async text => {
     const addToQueue = uri => sonosClient.queueNext(uri);
     let track;
 
@@ -59,7 +59,11 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       if (isChar(text)) {
         track = lastResult.tracks[charToIndex(text)];
       } else {
-        track = lastResult.tracks.find(t => formatTrack(t).toLowerCase().startsWith(text.toLowerCase()));
+        track = lastResult.tracks.find(t =>
+          formatTrack(t)
+            .toLowerCase()
+            .startsWith(text.toLowerCase())
+        );
       }
     }
     if (!track) {
@@ -96,13 +100,17 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     const np = idx => currentTrack.uri === result.items[idx].uri;
 
     log(result);
-    const items = result.items.map((i, idx) =>
-      `*${idx + index + 1}.* ${np(idx) ? '*' : ''}${i.artist} - ${i.title}${np(idx) ? '* :notes:' : ''}`);
+    const items = result.items.map(
+      (i, idx) =>
+        `*${idx + index + 1}.* ${np(idx) ? '*' : ''}${i.artist} - ${i.title}${
+          np(idx) ? '* :notes:' : ''
+        }`
+    );
 
     return `*${result.total}* total tracks in queue:\n\n${items.join('\n')}`;
   };
 
-  const addAlbum = async (text) => {
+  const addAlbum = async text => {
     const addToQueue = uri => sonosClient.queueNext(uri);
     let album;
 
@@ -113,7 +121,11 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       if (isChar(text)) {
         album = lastResult.albums[charToIndex(text)];
       } else {
-        album = lastResult.albums.find(a => formatAlbum(a).toLowerCase().startsWith(text.toLowerCase()));
+        album = lastResult.albums.find(a =>
+          formatAlbum(a)
+            .toLowerCase()
+            .startsWith(text.toLowerCase())
+        );
       }
     }
     if (!album) {
@@ -131,9 +143,11 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       const response = await spotifyClient.uriRequest(album.href);
 
       const trackUris = response.tracks.items.reverse().map(i => i.uri);
-      for (const trackUri of trackUris) { // eslint-disable-line no-restricted-syntax
-        await addToQueue(trackUri); // eslint-disable-line no-await-in-loop
+      /* eslint-disable no-restricted-syntax, no-await-in-loop */
+      for (const trackUri of trackUris) {
+        await addToQueue(trackUri);
       }
+      /* eslint-enable no-restricted-syntax, no-await-in-loop */
 
       return {
         text: 'Album added to queue.',
@@ -144,7 +158,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-  const addArtist = async (text) => {
+  const addArtist = async text => {
     const addToQueue = uri => sonosClient.queueNext(uri);
     let artist;
 
@@ -172,8 +186,9 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       log(topTracks);
 
       const trackUris = topTracks.reverse().map(i => i.uri);
-      for (const trackUri of trackUris) { // eslint-disable-line no-restricted-syntax
-        await addToQueue(trackUri); // eslint-disable-line no-await-in-loop
+      /* eslint-disable no-restricted-syntax, no-await-in-loop */
+      for (const trackUri of trackUris) {
+        await addToQueue(trackUri);
       }
 
       const trackList = await list();
@@ -191,7 +206,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
   };
 
   const adminBlacklist = async (args, user) => {
-    const addUser = (username) => {
+    const addUser = username => {
       const result = slackClient.addToBlacklist(username);
       if (result === undefined) {
         return `An error occurred adding ${username} to the blacklist.`;
@@ -201,7 +216,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       }
       return `${username} was already on the blacklist.`;
     };
-    const removeUser = (username) => {
+    const removeUser = username => {
       const result = slackClient.removeFromBlacklist(username);
       if (result === undefined) {
         return `An error occurred removing ${username} from the blacklist.`;
@@ -248,8 +263,12 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       return 'Sonos is not playing.';
     }
 
-    const timeStamps = `${formatSeconds(currentTrack.position)}/${formatSeconds(currentTrack.duration)}`;
-    return `Currently listening to *${currentTrack.artist}* - *${currentTrack.title}* (${timeStamps})`;
+    const timeStamps = `${formatSeconds(currentTrack.position)}/${formatSeconds(
+      currentTrack.duration
+    )}`;
+    return `Currently listening to *${currentTrack.artist}* - *${
+      currentTrack.title
+    }* (${timeStamps})`;
   };
 
   const getStatus = async () => {
@@ -274,7 +293,9 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       gongCount += 1;
       gongUsers.push(user);
       if (gongCount < gongLimit) {
-        return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${currentTrack.title}*`;
+        return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${
+          currentTrack.title
+        }*`;
       }
       await sonosClient.next();
       return 'GONGED!';
@@ -282,7 +303,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return `Nice try, <@${user}>, you've already gonged this!`;
   };
 
-  const help = () => `>>>*Standard commands:*\n
+  const help = () =>
+    `>>>*Standard commands:*\n
   *\`search\`* _text_: Search for a track
   *\`add\`* _text_: Add a track to the queue. You can specify the full text or the character code ` +
     `returned from a \`search\`.
@@ -342,25 +364,26 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-
-  const search = async (text) => {
+  const search = async text => {
     const tracks = await spotifyClient.searchTracks(text);
-    lastResult = { tracks: (tracks || []) };
+    lastResult = { tracks: tracks || [] };
 
     if (!(tracks && tracks.length)) {
       return NOT_FOUND;
     }
 
-    const trackNames = tracks.map((t, idx) => `*${indexToChar(idx)}.* ${formatTrack(t)}${t.explicit ? ' *`E`*' : ''}`);
+    const trackNames = tracks.map(
+      (t, idx) => `*${indexToChar(idx)}.* ${formatTrack(t)}${t.explicit ? ' *`E`*' : ''}`
+    );
 
     return `*I found the following tracks:*\n
 ${trackNames.join('\n')}\n
 *To add to the queue, use the \`add\` command.*`;
   };
 
-  const searchAlbums = async (text) => {
+  const searchAlbums = async text => {
     const albums = await spotifyClient.searchAlbums(text);
-    lastResult = { albums: (albums || []) };
+    lastResult = { albums: albums || [] };
 
     if (!(albums && albums.length)) {
       return NOT_FOUND;
@@ -372,9 +395,9 @@ ${albumNames.join('\n')}\n
 *To add to the queue, use the \`addalbum\` command.*`;
   };
 
-  const searchArtists = async (text) => {
+  const searchArtists = async text => {
     const artists = await spotifyClient.searchArtists(text);
-    lastResult = { artists: (artists || []) };
+    lastResult = { artists: artists || [] };
 
     if (!(artists && artists.length)) {
       return NOT_FOUND;
@@ -385,16 +408,18 @@ ${artistNames.join('\n')}\n
 *To add to the queue, use the \`addartist\` command.*`;
   };
 
-  const searchPlaylists = async (text) => {
+  const searchPlaylists = async text => {
     const playlists = [];
 
     const [favourites, spotifyPlaylists] = await Promise.all([
       sonosClient.getFavouriteSpotifyPlaylists(),
-      spotifyClient.searchPlaylists(text)]);
+      spotifyClient.searchPlaylists(text),
+    ]);
 
     if (favourites && favourites.length) {
-      const matchingPlaylists = favourites
-        .filter((playlist, idx) => idx < ITEM_LIMIT && wordSearch(text, playlist.name));
+      const matchingPlaylists = favourites.filter(
+        (playlist, idx) => idx < ITEM_LIMIT && wordSearch(text, playlist.name)
+      );
       if (matchingPlaylists && matchingPlaylists.length) {
         playlists.push(...matchingPlaylists);
       }
@@ -415,15 +440,16 @@ ${artistNames.join('\n')}\n
     if (!(playlists && playlists.length)) {
       return NOT_FOUND;
     }
-    const playlistNames = playlists.map((p, idx) =>
-      `*${indexToChar(idx)}.* ${p.name}  _(${_.get(p, 'tracks.total', 0)} tracks)_`);
+    const playlistNames = playlists.map(
+      (p, idx) => `*${indexToChar(idx)}.* ${p.name}  _(${_.get(p, 'tracks.total', 0)} tracks)_`
+    );
 
     return `*I found the following playlists:*\n
 ${playlistNames.join('\n')}
 \n*To replace the queue with a playlist, use the \`playlist\` command.*`;
   };
 
-  const setVolume = async (volume) => {
+  const setVolume = async volume => {
     const newVolume = parseInt(volume, 10);
     if (volume && newVolume >= 0 && newVolume <= 100) {
       await sonosClient.setVolume(newVolume);
@@ -434,7 +460,7 @@ ${playlistNames.join('\n')}
     return 'Invalid volume.';
   };
 
-  const switchPlaylist = async (text) => {
+  const switchPlaylist = async text => {
     const setQueue = uri => sonosClient.replaceQueue(uri);
     let playlist;
     let prefix = '';
@@ -460,7 +486,9 @@ ${playlistNames.join('\n')}
         if (isChar(text)) {
           playlist = lastResult.playlists[charToIndex(text)];
         } else {
-          playlist = lastResult.playlists.find(p => p.name.toLowerCase().startsWith(text.toLowerCase()));
+          playlist = lastResult.playlists.find(p =>
+            p.name.toLowerCase().startsWith(text.toLowerCase())
+          );
         }
       }
       if (!playlist) {
@@ -483,7 +511,6 @@ ${playlistNames.join('\n')}
 
     return GENERIC_ERROR;
   };
-
 
   const shuffle = async () => {
     const shuffled = await sonosClient.shuffle();
