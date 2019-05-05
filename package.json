@@ -12,7 +12,9 @@
     "prettier": "prettier --write '**/*.js'",
     "test": "NODE_ENV=${NODE_ENV:=test} DEBUG=sonosbot:*,test:* ./node_modules/.bin/mocha --recursive --exit --timeout 10000",
     "test-coverage": "nyc yarn test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "lint-staged": {
     "**/*.js": [
@@ -52,9 +54,11 @@
     "request": "2.88.0",
     "request-promise-native": "1.0.5",
     "sonos": "1.5.1",
-    "supports-color": "5.5.0"
+    "supports-color": "5.5.0",
+    "snyk": "^1.161.1"
   },
   "engines": {
     "node": ">=8.0.0"
-  }
+  },
+  "snyk": true
 }
