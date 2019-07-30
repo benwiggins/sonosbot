@@ -266,9 +266,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     const timeStamps = `${formatSeconds(currentTrack.position)}/${formatSeconds(
       currentTrack.duration
     )}`;
-    return `Currently listening to *${currentTrack.artist}* - *${
-      currentTrack.title
-    }* (${timeStamps})`;
+    return `Currently listening to *${currentTrack.artist}* - *${currentTrack.title}* (${timeStamps})`;
   };
 
   const getStatus = async () => {
@@ -293,9 +291,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       gongCount += 1;
       gongUsers.push(user);
       if (gongCount < gongLimit) {
-        return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${
-          currentTrack.title
-        }*`;
+        return `This is gong ${gongCount} of ${gongLimit} for *${currentTrack.artist}* - *${currentTrack.title}*`;
       }
       await sonosClient.next();
       return 'GONGED!';
