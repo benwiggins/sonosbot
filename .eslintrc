@@ -1,14 +1,6 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "airbnb-base",
-    "plugin:prettier/recommended"
-  ],
-  "plugins": [
-    "filenames",
-    "import",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["filenames", "import", "prettier"],
   "env": {
     "es6": true,
     "mocha": true,
