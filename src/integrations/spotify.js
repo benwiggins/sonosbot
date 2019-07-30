@@ -1,24 +1,27 @@
 const NodeCache = require('node-cache');
-const rp = require('request-promise-native');
+const got = require('got');
+const FormData = require('form-data');
 const log = require('../log')('spotify');
 
 const CACHE_KEY = 'spotifyToken';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
-const gzip = process.env.NODE_ENV !== 'test';
 
-const request = (uri, token, query = {}, method = 'GET') => ({
-  method,
-  uri,
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: query,
+const useGzip = process.env.NODE_ENV !== 'test';
+
+const spotifyApi = got.extend({
+  baseUrl: SPOTIFY_API,
+  decompress: useGzip,
   json: true,
-  gzip,
 });
 
 const jsonRequest = (command, token, query, method = 'GET') =>
-  request(`${SPOTIFY_API}/${command}`, token, query, method);
+  spotifyApi(`/${command}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    query,
+    method,
+  }).then(r => r.body);
 
 class SpotifyClient {
   constructor({ clientId, secret, region }) {
@@ -43,24 +46,24 @@ class SpotifyClient {
 
   async generateAccessToken() {
     log('Generating Spotify access token');
-    const tokenData = await rp({
-      uri: 'https://accounts.spotify.com/api/token',
-      method: 'POST',
-      headers: { Authorization: `Basic ${this.credentials}` },
-      form: { grant_type: 'client_credentials' },
-      json: true,
-      gzip,
-    });
-    return tokenData;
+    const form = new FormData();
+    form.append('grant_type', 'client_credentials');
+
+    return got
+      .post('https://accounts.spotify.com/api/token', {
+        body: form,
+        decompress: useGzip,
+        headers: { Authorization: `Basic ${this.credentials}` },
+      })
+      .then(r => JSON.parse(r.body));
   }
 
   async searchQuery(query) {
     const token = await this.getToken();
-    const req = jsonRequest('search', token, {
+    return jsonRequest('search', token, {
       ...query,
       market: this.region,
     });
-    return rp(req);
   }
 
   async searchTracks(text) {
@@ -85,24 +88,30 @@ class SpotifyClient {
 
   async getTopTracks(artistId) {
     const token = await this.getToken();
-    const response = await rp(
-      jsonRequest(`artists/${artistId}/top-tracks?country=${this.region}`, token)
-    );
+    const response = await jsonRequest(`artists/${artistId}/top-tracks`, token, {
+      country: this.region,
+    });
+
     return (response && response.tracks) || [];
   }
 
   async getFeaturedPlaylists() {
     const token = await this.getToken();
-    const response = await rp(
-      jsonRequest(`browse/featured-playlists?country=${this.region}`, token)
-    );
+    const response = await jsonRequest('browse/featured-playlists', token, {
+      country: this.region,
+    });
     return (response && response.playlists) || [];
   }
 
   async uriRequest(uri) {
     const token = await this.getToken();
-    const response = await rp(request(uri, token));
-    return response;
+    return got(uri, {
+      decompress: useGzip,
+      json: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(r => r.body);
   }
 }
 
