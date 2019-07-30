@@ -1,15 +1,20 @@
 const nock = require('nock');
-const { chai } = require('./testHelper');
-
-const { expect } = chai;
-
-const Commands = require('../src/commands');
-const SpotifyClient = require('../src/integrations/spotify');
 const SonosClient = require('../src/integrations/sonos');
+const SpotifyClient = require('../src/integrations/spotify');
+
+const mockQueueNext = jest.fn();
+jest.mock('../src/integrations/sonos', () =>
+  jest.fn().mockImplementation(() => ({
+    getFavouriteSpotifyPlaylists: jest.fn(() => []),
+    queueNext: mockQueueNext,
+  }))
+);
+
+const spotifyClient = new SpotifyClient({ clientId: 'CLIENT_ID', secret: 'SECRET', region: 'AU' });
+const Commands = require('../src/commands');
 
 const json = filename => `${__dirname}/responses/${filename}.json`;
 
-const spotifyClient = new SpotifyClient({ clientId: 'CLIENT_ID', secret: 'SECRET', region: 'AU' });
 const sonosClient = new SonosClient();
 describe('commands', () => {
   let commands;
@@ -31,7 +36,7 @@ describe('commands', () => {
 
     it('returns a list of songs', async () => {
       const response = await commands.commands.search('closer');
-      expect(response).to.equal(`*I found the following tracks:*
+      expect(response).toEqual(`*I found the following tracks:*
 
 *a.* The Chainsmokers, Halsey - Closer
 *b.* Six60 - Closer
@@ -67,7 +72,7 @@ describe('commands', () => {
     });
     it('returns a list of albums', async () => {
       const response = await commands.commands.searchalbum('ok computer');
-      expect(response).to.equal(
+      expect(response).toEqual(
         `*I found the following albums:*
 
 *a.* Radiohead - OK Computer (1997)
@@ -93,7 +98,7 @@ describe('commands', () => {
     });
     it('returns a list of artists', async () => {
       const response = await commands.commands.searchartist('james');
-      expect(response).to.equal(`*I found the following artists:*
+      expect(response).toEqual(`*I found the following artists:*
 
 *a.* Hayden James
 *b.* James Arthur
@@ -131,7 +136,7 @@ describe('commands', () => {
     });
     it('returns a list of playlists', async () => {
       const response = await commands.adminCommands.searchplaylist('while you work');
-      expect(response).to.equal(`*I found the following playlists:*
+      expect(response).toEqual(`*I found the following playlists:*
 
 *a.* While You Work (@whileyouwork)  _(3668 tracks)_
 *b.* Vintage While You Work: The Complete Postmodern Jukebox Playlist  _(233 tracks)_
@@ -171,7 +176,7 @@ describe('commands', () => {
     });
 
     it('adds an album to the queue', async () => {
-      chai.spy.on(sonosClient, 'queueNext', () => true);
+      mockQueueNext.mockImplementation(() => true);
       await commands.commands.searchalbum('ok computer');
       const response = await commands.commands.addalbum('b');
 
@@ -180,7 +185,7 @@ describe('commands', () => {
         body: '*OK Computer OKNOTOK 1997 2017*\nRadiohead\n_2017_',
         thumbUrl: 'https://i.scdn.co/image/819b35407ee4fe3da687cbacd8017b4448f0775b',
       };
-      expect(response).to.deep.equal(expectedResult);
+      expect(response).toEqual(expectedResult);
     });
   });
 });

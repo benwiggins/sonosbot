@@ -7,12 +7,12 @@
   "author": "Ben Wiggins",
   "license": "MIT",
   "scripts": {
-    "start": "DEBUG=sonosbot:* node index.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint src",
     "prettier": "prettier --write '**/*.js'",
-    "test": "NODE_ENV=${NODE_ENV:=test} DEBUG=sonosbot:*,test:* ./node_modules/.bin/mocha --recursive --exit --timeout 10000",
+    "start": "DEBUG=sonosbot:* node index.js",
     "test-coverage": "nyc yarn test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "test": "NODE_ENV=${NODE_ENV:=test} DEBUG=sonosbot:*,test:* jest --verbose"
   },
   "lint-staged": {
     "**/*.js": [
@@ -27,9 +27,6 @@
     }
   },
   "devDependencies": {
-    "chai": "4.2.0",
-    "chai-spies": "1.0.0",
-    "dirty-chai": "2.0.1",
     "eslint": "6.1.0",
     "eslint-config-airbnb-base": "13.2.0",
     "eslint-config-prettier": "6.0.0",
@@ -37,8 +34,8 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-prettier": "3.1.0",
     "husky": "3.0.2",
+    "jest": "24.8.0",
     "lint-staged": "9.2.1",
-    "mocha": "6.2.0",
     "nock": "10.0.6",
     "nyc": "14.1.1",
     "prettier": "1.18.2"

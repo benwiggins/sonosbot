@@ -1,120 +1,117 @@
-const { chai } = require('./testHelper');
 const utils = require('../src/utils');
-
-const { expect } = chai;
 
 describe('utils', () => {
   describe('charToIndex', () => {
     it('converts a-z chars to indexes', () => {
-      expect(utils.charToIndex('a')).to.equal(0);
-      expect(utils.charToIndex('b')).to.equal(1);
-      expect(utils.charToIndex('z')).to.equal(25);
+      expect(utils.charToIndex('a')).toEqual(0);
+      expect(utils.charToIndex('b')).toEqual(1);
+      expect(utils.charToIndex('z')).toEqual(25);
     });
     it('handles uppercase', () => {
-      expect(utils.charToIndex('E')).to.equal(4);
-      expect(utils.charToIndex('Y')).to.equal(24);
+      expect(utils.charToIndex('E')).toEqual(4);
+      expect(utils.charToIndex('Y')).toEqual(24);
     });
     it('ignores subsequent characters', () => {
-      expect(utils.charToIndex('b....!')).to.equal(1);
+      expect(utils.charToIndex('b....!')).toEqual(1);
     });
     it('ignores invalid values', () => {
-      expect(utils.charToIndex('[')).to.be.undefined();
-      expect(utils.charToIndex('~')).to.be.undefined();
+      expect(utils.charToIndex('[')).toBeUndefined();
+      expect(utils.charToIndex('~')).toBeUndefined();
     });
   });
 
   describe('formatMilliseconds', () => {
     it('converts milliseconds to minutes and seconds', () => {
-      expect(utils.formatMilliseconds(237480)).to.equal('3:57');
+      expect(utils.formatMilliseconds(237480)).toEqual('3:57');
     });
     it('pads seconds to 2 digits', () => {
-      expect(utils.formatMilliseconds(61000)).to.equal('1:01');
+      expect(utils.formatMilliseconds(61000)).toEqual('1:01');
     });
     it('pads minutes to 1 digit', () => {
-      expect(utils.formatMilliseconds(30000)).to.equal('0:30');
+      expect(utils.formatMilliseconds(30000)).toEqual('0:30');
     });
     it('displays hours as minutes', () => {
-      expect(utils.formatMilliseconds(2 * 60 * 60 * 1000)).to.equal('120:00');
+      expect(utils.formatMilliseconds(2 * 60 * 60 * 1000)).toEqual('120:00');
     });
   });
 
   describe('formatSeconds', () => {
     it('converts seconds to minutes and seconds', () => {
-      expect(utils.formatSeconds(237)).to.equal('3:57');
+      expect(utils.formatSeconds(237)).toEqual('3:57');
     });
     it('pads seconds to 2 digits', () => {
-      expect(utils.formatSeconds(61)).to.equal('1:01');
+      expect(utils.formatSeconds(61)).toEqual('1:01');
     });
     it('pads minutes to 1 digit', () => {
-      expect(utils.formatSeconds(30)).to.equal('0:30');
+      expect(utils.formatSeconds(30)).toEqual('0:30');
     });
     it('displays hours as minutes', () => {
-      expect(utils.formatSeconds(2 * 60 * 60)).to.equal('120:00');
+      expect(utils.formatSeconds(2 * 60 * 60)).toEqual('120:00');
     });
   });
 
   describe('indextoChar', () => {
     it('converts indexes to chars', () => {
-      expect(utils.indexToChar(0)).to.equal('a');
-      expect(utils.indexToChar(1)).to.equal('b');
-      expect(utils.indexToChar(25)).to.equal('z');
+      expect(utils.indexToChar(0)).toEqual('a');
+      expect(utils.indexToChar(1)).toEqual('b');
+      expect(utils.indexToChar(25)).toEqual('z');
     });
     it('ignores invalid indexes', () => {
-      expect(utils.indexToChar(-1)).to.be.undefined();
-      expect(utils.indexToChar(12131)).to.be.undefined();
+      expect(utils.indexToChar(-1)).toBeUndefined();
+      expect(utils.indexToChar(12131)).toBeUndefined();
     });
   });
 
   describe('isChar', () => {
     it('detects valid chars', () => {
-      expect(utils.isChar('a')).to.be.true();
-      expect(utils.isChar('b')).to.be.true();
-      expect(utils.isChar('c.')).to.be.true();
-      expect(utils.isChar('D.   ')).to.be.true();
-      expect(utils.isChar('E          ')).to.be.true();
+      expect(utils.isChar('a')).toBeTruthy();
+      expect(utils.isChar('b')).toBeTruthy();
+      expect(utils.isChar('c.')).toBeTruthy();
+      expect(utils.isChar('D.   ')).toBeTruthy();
+      expect(utils.isChar('E          ')).toBeTruthy();
     });
 
     it('rejects invalid inputs', () => {
-      expect(utils.isChar('0')).to.be.false();
-      expect(utils.isChar('Hi, how are you?')).to.be.false();
-      expect(utils.isChar('Special K')).to.be.false();
-      expect(utils.isChar()).to.be.false();
-      expect(utils.isChar('f.f.f.f.')).to.be.false();
+      expect(utils.isChar('0')).toBeFalsy();
+      expect(utils.isChar('Hi, how are you?')).toBeFalsy();
+      expect(utils.isChar('Special K')).toBeFalsy();
+      expect(utils.isChar()).toBeFalsy();
+      expect(utils.isChar('f.f.f.f.')).toBeFalsy();
     });
   });
 
   describe('sanitiseChannel', () => {
     it('strips # from channel names', () => {
-      expect(utils.sanitiseChannel('#sonos')).to.equal('sonos');
-      expect(utils.sanitiseChannel('sonosadmin')).to.equal('sonosadmin');
+      expect(utils.sanitiseChannel('#sonos')).toEqual('sonos');
+      expect(utils.sanitiseChannel('sonosadmin')).toEqual('sonosadmin');
     });
     it('leaves the rest of the string intact', () => {
-      expect(utils.sanitiseChannel('#so#n#o#s')).to.equal('so#n#o#s');
+      expect(utils.sanitiseChannel('#so#n#o#s')).toEqual('so#n#o#s');
     });
   });
 
   describe('wordSearch', () => {
     it('finds matching strings', () => {
       const string = 'This is most certainly a string with a few words in it';
-      expect(utils.wordSearch('this is', string)).to.be.true();
-      expect(utils.wordSearch('This is', string)).to.be.true();
-      expect(utils.wordSearch('CERTAIN', string)).to.be.true();
-      expect(utils.wordSearch('string few words', string)).to.be.true();
-      expect(utils.wordSearch('most few words in', string)).to.be.true();
-      expect(utils.wordSearch('a it is with this', string)).to.be.true();
+      expect(utils.wordSearch('this is', string)).toBeTruthy();
+      expect(utils.wordSearch('This is', string)).toBeTruthy();
+      expect(utils.wordSearch('CERTAIN', string)).toBeTruthy();
+      expect(utils.wordSearch('string few words', string)).toBeTruthy();
+      expect(utils.wordSearch('most few words in', string)).toBeTruthy();
+      expect(utils.wordSearch('a it is with this', string)).toBeTruthy();
     });
 
     it('rejects non matching strings', () => {
       const string = 'This is most certainly a string with a few words in it';
-      expect(utils.wordSearch('not here', string)).to.be.false();
-      expect(utils.wordSearch('This is most certainly a camel', string)).to.be.false();
-      expect(utils.wordSearch('This is almost certainly a string', string)).to.be.false();
+      expect(utils.wordSearch('not here', string)).toBeFalsy();
+      expect(utils.wordSearch('This is most certainly a camel', string)).toBeFalsy();
+      expect(utils.wordSearch('This is almost certainly a string', string)).toBeFalsy();
     });
 
     it('handles special chars', () => {
       const string = 'Some cool regex chars are (?:/])';
-      expect(utils.wordSearch('.*', string)).to.be.false();
-      expect(utils.wordSearch('(?:/', string)).to.be.true();
+      expect(utils.wordSearch('.*', string)).toBeFalsy();
+      expect(utils.wordSearch('(?:/', string)).toBeTruthy();
     });
   });
 });
