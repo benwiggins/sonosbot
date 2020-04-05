@@ -21,7 +21,7 @@ const jsonRequest = (command, token, query, method = 'GET') =>
     },
     query,
     method,
-  }).then(r => r.body);
+  }).then((r) => r.body);
 
 class SpotifyClient {
   constructor({ clientId, secret, region }) {
@@ -55,7 +55,7 @@ class SpotifyClient {
         decompress: useGzip,
         headers: { Authorization: `Basic ${this.credentials}` },
       })
-      .then(r => JSON.parse(r.body));
+      .then((r) => JSON.parse(r.body));
   }
 
   async searchQuery(query) {
@@ -111,7 +111,7 @@ class SpotifyClient {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then(r => r.body);
+    }).then((r) => r.body);
   }
 }
 

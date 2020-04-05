@@ -55,9 +55,9 @@ class SonosClient {
     const regex = /spotify:user:.*:playlist:(.*)$/;
     const { items } = await this.sonos.getFavorites();
     const playlists = (items || [])
-      .map(item => ({ ...item, uri: queryString.unescape(item.uri) }))
-      .filter(item => regex.test(item.uri))
-      .map(item => ({ name: item.title, uri: item.uri.match(regex)[0] }));
+      .map((item) => ({ ...item, uri: queryString.unescape(item.uri) }))
+      .filter((item) => regex.test(item.uri))
+      .map((item) => ({ name: item.title, uri: item.uri.match(regex)[0] }));
     return playlists;
   }
 

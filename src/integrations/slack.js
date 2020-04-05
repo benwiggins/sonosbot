@@ -20,7 +20,7 @@ class SlackClient {
     const users = await this.webClient.users.list();
 
     if (users && users.members) {
-      return users.members.filter(u => this.blacklist.includes(u.id));
+      return users.members.filter((u) => this.blacklist.includes(u.id));
     }
     return [];
   }
@@ -42,7 +42,7 @@ class SlackClient {
     if (user.match(/^<@.*>$/)) {
       const id = user.substr(2, user.length - 3);
       if (this.blacklist.includes(id)) {
-        this.blacklist = this.blacklist.filter(b => b !== id);
+        this.blacklist = this.blacklist.filter((b) => b !== id);
         return true;
       }
       return false;
@@ -82,12 +82,12 @@ class SlackClient {
     const { channels } = await this.webClient.channels.list(); // Public channels
     const { groups } = await this.webClient.groups.list(); // Private channels
     const allChannels = [
-      ...channels.filter(c => c.is_member && !c.is_archived),
-      ...groups.filter(g => !g.is_archived),
+      ...channels.filter((c) => c.is_member && !c.is_archived),
+      ...groups.filter((g) => !g.is_archived),
     ];
 
-    const standardChannel = allChannels.find(c => c.name === this.standardChannel);
-    const adminChannel = allChannels.find(c => c.name === this.adminChannel);
+    const standardChannel = allChannels.find((c) => c.name === this.standardChannel);
+    const adminChannel = allChannels.find((c) => c.name === this.adminChannel);
     if (!(standardChannel && standardChannel.id)) {
       throw new Error(`I am not a member of channel #${this.standardChannel}`);
     }
@@ -96,7 +96,7 @@ class SlackClient {
     }
     this.adminChannelId = adminChannel.id;
 
-    this.client.on('message', event => this.handleMessage(event));
+    this.client.on('message', (event) => this.handleMessage(event));
   }
 
   sendMessage(message, channel) {

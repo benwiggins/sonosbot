@@ -13,7 +13,7 @@ jest.mock('../src/integrations/sonos', () =>
 const spotifyClient = new SpotifyClient({ clientId: 'CLIENT_ID', secret: 'SECRET', region: 'AU' });
 const Commands = require('../src/commands');
 
-const json = filename => `${__dirname}/responses/${filename}.json`;
+const json = (filename) => `${__dirname}/responses/${filename}.json`;
 
 const sonosClient = new SonosClient();
 describe('commands', () => {

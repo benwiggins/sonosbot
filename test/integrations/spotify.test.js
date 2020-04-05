@@ -2,7 +2,7 @@ const nock = require('nock');
 
 const SpotifyClient = require('../../src/integrations/spotify');
 
-const json = filename => `${__dirname}/../responses/${filename}.json`;
+const json = (filename) => `${__dirname}/../responses/${filename}.json`;
 
 describe('Spotify', () => {
   describe('generateAccessToken', () => {

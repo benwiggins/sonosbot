@@ -21,14 +21,14 @@ let gongUri;
 let gongUsers = [];
 
 const getRandom = (array = []) => array[Math.floor(Math.random() * array.length)];
-const formatArtists = item => item.artists.map(a => a.name).join(', ');
-const formatTrack = track => `${formatArtists(track)} - ${track.name}`;
-const formatAlbum = album => {
+const formatArtists = (item) => item.artists.map((a) => a.name).join(', ');
+const formatTrack = (track) => `${formatArtists(track)} - ${track.name}`;
+const formatAlbum = (album) => {
   const year = album.release_date.substring(0, 4);
   return `${formatArtists(album)} - ${album.name} (${year})`;
 };
 
-const formatTrackDetail = track => {
+const formatTrackDetail = (track) => {
   const albumYear = track.album.release_date.substring(0, 4);
   const length = formatMilliseconds(track.duration_ms);
 
@@ -38,7 +38,7 @@ _${track.album.name}_
 _${albumYear}_`;
 };
 
-const formatAlbumDetail = album => {
+const formatAlbumDetail = (album) => {
   const albumYear = album.release_date.substring(0, 4);
   return `*${album.name}*
 ${formatArtists(album)}
@@ -48,8 +48,8 @@ _${albumYear}_`;
 module.exports = (spotifyClient, sonosClient, slackClient) => {
   let lastResult = {};
 
-  const add = async text => {
-    const addToQueue = uri => sonosClient.queueNext(uri);
+  const add = async (text) => {
+    const addToQueue = (uri) => sonosClient.queueNext(uri);
     let track;
 
     if (!(text && text.length)) {
@@ -59,10 +59,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       if (isChar(text)) {
         track = lastResult.tracks[charToIndex(text)];
       } else {
-        track = lastResult.tracks.find(t =>
-          formatTrack(t)
-            .toLowerCase()
-            .startsWith(text.toLowerCase())
+        track = lastResult.tracks.find((t) =>
+          formatTrack(t).toLowerCase().startsWith(text.toLowerCase())
         );
       }
     }
@@ -97,7 +95,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       return GENERIC_ERROR;
     }
 
-    const np = idx => currentTrack.uri === result.items[idx].uri;
+    const np = (idx) => currentTrack.uri === result.items[idx].uri;
 
     log(result);
     const items = result.items.map(
@@ -110,8 +108,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return `*${result.total}* total tracks in queue:\n\n${items.join('\n')}`;
   };
 
-  const addAlbum = async text => {
-    const addToQueue = uri => sonosClient.queueNext(uri);
+  const addAlbum = async (text) => {
+    const addToQueue = (uri) => sonosClient.queueNext(uri);
     let album;
 
     if (!(text && text.length)) {
@@ -121,10 +119,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       if (isChar(text)) {
         album = lastResult.albums[charToIndex(text)];
       } else {
-        album = lastResult.albums.find(a =>
-          formatAlbum(a)
-            .toLowerCase()
-            .startsWith(text.toLowerCase())
+        album = lastResult.albums.find((a) =>
+          formatAlbum(a).toLowerCase().startsWith(text.toLowerCase())
         );
       }
     }
@@ -142,7 +138,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
 
       const response = await spotifyClient.uriRequest(album.href);
 
-      const trackUris = response.tracks.items.reverse().map(i => i.uri);
+      const trackUris = response.tracks.items.reverse().map((i) => i.uri);
       /* eslint-disable no-restricted-syntax, no-await-in-loop */
       for (const trackUri of trackUris) {
         await addToQueue(trackUri);
@@ -158,8 +154,8 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-  const addArtist = async text => {
-    const addToQueue = uri => sonosClient.queueNext(uri);
+  const addArtist = async (text) => {
+    const addToQueue = (uri) => sonosClient.queueNext(uri);
     let artist;
 
     if (!(text && text.length)) {
@@ -169,7 +165,9 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       if (isChar(text)) {
         artist = lastResult.artists[charToIndex(text)];
       } else {
-        artist = lastResult.artists.find(a => a.name.toLowerCase().startsWith(text.toLowerCase()));
+        artist = lastResult.artists.find((a) =>
+          a.name.toLowerCase().startsWith(text.toLowerCase())
+        );
       }
     }
     if (!artist) {
@@ -185,7 +183,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       const topTracks = await spotifyClient.getTopTracks(id);
       log(topTracks);
 
-      const trackUris = topTracks.reverse().map(i => i.uri);
+      const trackUris = topTracks.reverse().map((i) => i.uri);
       /* eslint-disable no-restricted-syntax, no-await-in-loop */
       for (const trackUri of trackUris) {
         await addToQueue(trackUri);
@@ -200,13 +198,15 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
   const blacklist = async () => {
     const users = await slackClient.getBlacklistedUsers();
     if (users && users.length) {
-      return `The following users are on the blacklist: ${users.map(u => `<@${u.id}>`).join(', ')}`;
+      return `The following users are on the blacklist: ${users
+        .map((u) => `<@${u.id}>`)
+        .join(', ')}`;
     }
     return 'There are no users on the blacklist';
   };
 
   const adminBlacklist = async (args, user) => {
-    const addUser = username => {
+    const addUser = (username) => {
       const result = slackClient.addToBlacklist(username);
       if (result === undefined) {
         return `An error occurred adding ${username} to the blacklist.`;
@@ -216,7 +216,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
       }
       return `${username} was already on the blacklist.`;
     };
-    const removeUser = username => {
+    const removeUser = (username) => {
       const result = slackClient.removeFromBlacklist(username);
       if (result === undefined) {
         return `An error occurred removing ${username} from the blacklist.`;
@@ -360,7 +360,7 @@ module.exports = (spotifyClient, sonosClient, slackClient) => {
     return GENERIC_ERROR;
   };
 
-  const search = async text => {
+  const search = async (text) => {
     const tracks = await spotifyClient.searchTracks(text);
     lastResult = { tracks: tracks || [] };
 
@@ -377,7 +377,7 @@ ${trackNames.join('\n')}\n
 *To add to the queue, use the \`add\` command.*`;
   };
 
-  const searchAlbums = async text => {
+  const searchAlbums = async (text) => {
     const albums = await spotifyClient.searchAlbums(text);
     lastResult = { albums: albums || [] };
 
@@ -391,7 +391,7 @@ ${albumNames.join('\n')}\n
 *To add to the queue, use the \`addalbum\` command.*`;
   };
 
-  const searchArtists = async text => {
+  const searchArtists = async (text) => {
     const artists = await spotifyClient.searchArtists(text);
     lastResult = { artists: artists || [] };
 
@@ -404,7 +404,7 @@ ${artistNames.join('\n')}\n
 *To add to the queue, use the \`addartist\` command.*`;
   };
 
-  const searchPlaylists = async text => {
+  const searchPlaylists = async (text) => {
     const playlists = [];
 
     const [favourites, spotifyPlaylists] = await Promise.all([
@@ -423,9 +423,9 @@ ${artistNames.join('\n')}\n
 
     if (playlists.length < ITEM_LIMIT) {
       if (spotifyPlaylists && spotifyPlaylists.length) {
-        const existingUris = favourites.map(p => p.uri);
+        const existingUris = favourites.map((p) => p.uri);
         const remainingPlaylists = spotifyPlaylists
-          .filter(playlist => !existingUris.includes(playlist.uri))
+          .filter((playlist) => !existingUris.includes(playlist.uri))
           .slice(0, ITEM_LIMIT - playlists.length);
         playlists.push(...remainingPlaylists);
       }
@@ -445,7 +445,7 @@ ${playlistNames.join('\n')}
 \n*To replace the queue with a playlist, use the \`playlist\` command.*`;
   };
 
-  const setVolume = async volume => {
+  const setVolume = async (volume) => {
     const newVolume = parseInt(volume, 10);
     if (volume && newVolume >= 0 && newVolume <= 100) {
       await sonosClient.setVolume(newVolume);
@@ -456,8 +456,8 @@ ${playlistNames.join('\n')}
     return 'Invalid volume.';
   };
 
-  const switchPlaylist = async text => {
-    const setQueue = uri => sonosClient.replaceQueue(uri);
+  const switchPlaylist = async (text) => {
+    const setQueue = (uri) => sonosClient.replaceQueue(uri);
     let playlist;
     let prefix = '';
     if (!(text && text.length)) {
@@ -482,7 +482,7 @@ ${playlistNames.join('\n')}
         if (isChar(text)) {
           playlist = lastResult.playlists[charToIndex(text)];
         } else {
-          playlist = lastResult.playlists.find(p =>
+          playlist = lastResult.playlists.find((p) =>
             p.name.toLowerCase().startsWith(text.toLowerCase())
           );
         }
