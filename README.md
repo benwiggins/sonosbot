@@ -11,7 +11,7 @@ Control Sonos through Slack. Integrates with Spotify. Written from scratch but b
 
 ### Requirements
 
-Node 8.x or higher
+Node 12.x or higher
 
 ### Configuration
 
