@@ -42,12 +42,12 @@
   "dependencies": {
     "@slack/client": "5.0.2",
     "debug": "4.1.1",
-    "form-data": "2.5.0",
+    "form-data": "3.0.0",
     "got": "9.6.0",
     "lodash": "4.17.15",
-    "node-cache": "4.2.1",
-    "sonos": "1.12.2",
-    "supports-color": "7.0.0"
+    "node-cache": "5.1.0",
+    "sonos": "1.12.7",
+    "supports-color": "7.1.0"
   },
   "engines": {
     "node": ">=12.0.0"
