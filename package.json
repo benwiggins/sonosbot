@@ -1,9 +1,9 @@
 {
   "name": "sonosbot",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Control Sonos/Spotify through Slack.",
   "main": "index.js",
-  "repository": "https://github.com/benwiggins/sonosbot.git",
+  "repository": "https://github.com/benwiggins/sonosbot",
   "author": "Ben Wiggins",
   "license": "MIT",
   "scripts": {
@@ -43,7 +43,7 @@
     "@slack/client": "5.0.2",
     "debug": "4.1.1",
     "form-data": "3.0.0",
-    "got": "9.6.0",
+    "got": "10.7.0",
     "lodash": "4.17.15",
     "node-cache": "5.1.0",
     "sonos": "1.12.7",

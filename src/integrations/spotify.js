@@ -2,24 +2,28 @@ const NodeCache = require('node-cache');
 const got = require('got');
 const FormData = require('form-data');
 const log = require('../log')('spotify');
+const { name, version, repository } = require('../../package.json');
 
 const CACHE_KEY = 'spotifyToken';
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 
-const useGzip = process.env.NODE_ENV !== 'test';
+const useCompression = process.env.NODE_ENV !== 'test';
 
 const spotifyApi = got.extend({
-  baseUrl: SPOTIFY_API,
-  decompress: useGzip,
-  json: true,
+  prefixUrl: SPOTIFY_API,
+  decompress: useCompression,
+  responseType: 'json',
+  headers: {
+    'user-agent': `${name}/${version} (${repository})`,
+  },
 });
 
-const jsonRequest = (command, token, query, method = 'GET') =>
-  spotifyApi(`/${command}`, {
+const jsonRequest = (command, token, searchParams, method = 'GET') =>
+  spotifyApi(command, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    query,
+    searchParams,
     method,
   }).then((r) => r.body);
 
@@ -52,10 +56,11 @@ class SpotifyClient {
     return got
       .post('https://accounts.spotify.com/api/token', {
         body: form,
-        decompress: useGzip,
+        decompress: useCompression,
+        responseType: 'json',
         headers: { Authorization: `Basic ${this.credentials}` },
       })
-      .then((r) => JSON.parse(r.body));
+      .then((r) => r.body);
   }
 
   async searchQuery(query) {
@@ -106,8 +111,8 @@ class SpotifyClient {
   async uriRequest(uri) {
     const token = await this.getToken();
     return got(uri, {
-      decompress: useGzip,
-      json: true,
+      decompress: useCompression,
+      responseType: 'json',
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -28,7 +28,6 @@ class SlackClient {
   addToBlacklist(user) {
     if (user.match(/^<@.*>$/)) {
       const id = user.substr(2, user.length - 3);
-      console.log(id);
       if (!this.blacklist.includes(id)) {
         this.blacklist.push(id);
         return true;
