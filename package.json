@@ -46,7 +46,7 @@
     "got": "10.7.0",
     "lodash": "4.17.21",
     "node-cache": "5.1.0",
-    "sonos": "1.12.7",
+    "sonos": "1.14.1",
     "supports-color": "7.1.0"
   },
   "engines": {
